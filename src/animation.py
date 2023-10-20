@@ -28,32 +28,17 @@ class AnimateSprite(pygame.sprite.Sprite):
         return name
 
     def change_animation(self, name):
-        if name == 'suicide':
-            self.image = self.images[name][self.animation_index]
-            self.image.set_colorkey([0, 255, 0])
-            self.clock += self.speed*5 # Détermine la vitesse de l'animation en fonction de la vitesse en limitant le nombre de changement d'image / seconde
+        self.image = self.images[name][self.animation_index]
+        self.image.set_colorkey([0, 255, 0])
+        self.clock += self.speed*5 # Détermine la vitesse de l'animation en fonction de la vitesse en limitant le nombre de changement d'image / seconde
 
-            if self.clock >= 250:
+        if self.clock >= 100:
 
-                self.animation_index += 1 #Permet de passer à l'image suivante
+            self.animation_index += 1 #Permet de passer à l'image suivante
 
-                if self.animation_index >= 7:
-                    return True
-                if self.animation_index >= len(self.images[name]):
-                    self.animation_index = 0
-                self.clock = 0
-        else:
-            self.image = self.images[name][self.animation_index]
-            self.image.set_colorkey([0, 255, 0])
-            self.clock += self.speed*5 # Détermine la vitesse de l'animation en fonction de la vitesse en limitant le nombre de changement d'image / seconde
-
-            if self.clock >= 100:
-
-                self.animation_index += 1 #Permet de passer à l'image suivante
-
-                if self.animation_index >= len(self.images[name]):
-                    self.animation_index = 0
-                self.clock = 0
+            if self.animation_index >= len(self.images[name]):
+                self.animation_index = 0
+            self.clock = 0
         return False
             
 

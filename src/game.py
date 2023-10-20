@@ -20,6 +20,7 @@ class Game:
     def handle_input(self, mouvement):  # Déplacement du joueur
         pressed = pygame.key.get_pressed()
         if pressed[pygame.K_z]:  # Haut
+            print('up')
             self.player.move_up()
             return 'up'
         elif pressed[pygame.K_d]:  # Droite
@@ -56,7 +57,6 @@ class Game:
         
 
         while running:  # Tant que running = True:
-
             self.player.save_location()
             mouvement = self.handle_input(mouvement) # Enregistre les entrée de main du joueur
             self.update()  # Update de la position du joueur
@@ -66,8 +66,6 @@ class Game:
             self.map_manager.render_map(self.screen)
             
             pygame.display.flip()
-
-            #Musique de fond
 
             for event in pygame.event.get():  # Liste des évènement
                 if event.type == pygame.QUIT:  # Vérifie si l'utilisateur à tenter de fermer la fenètre avec la croix rouge
@@ -81,10 +79,6 @@ class Game:
                     if event.key == pygame.K_l:
                         self.map_manager.sauvegarde()
                         running = False
-
-            if mouvement == True:   #Si on termine l'annimation du suicide alors:
-                running == False
-                pygame.mixer.stop()
             clock.tick(60)
 
             
