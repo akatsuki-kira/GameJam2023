@@ -19,18 +19,6 @@ class CombatApp:
     def on_init(self):
         pygame.init()
         self.font = pygame.font.SysFont('Cheese Burger', 30)
-        self.text_box_debut = pygame.Rect(500, 200, 1000, 100)
-        self.index = -1
-        self.space_released = True
-        texts_debut = [
-            "Depuis quelques années, on observe une montée de cas de phobie des mathématiques chez les jeunes étudiants bordelais.",
-            "Les scientifiques tentèrent d'expliquer ça... En vain. Pourquoi avaient-ils autant peur?",
-            "Les discours étaient confus, irrationnels... Ils disaient voir des fantômes, avoir la sensation d'être hantés.",
-            "Quand tout à coup, une jeune aventurière eut une idée.",
-            "En 20XX, dû à un grand scandale à l'échelle internationale, l'Université Sciences et Technologies de Bordeaux ferma ses portes.",
-            "Le bâtiment fût laissé en ruines. Cela devint rapidement un endroit considéré comme hanté.",
-            "Et si la source de ce mal-être venait des bâtiments de sciences de ce campus abandonné?"
-        ]
 
         self.text_renders = [self.font.render(text, True, (0, 0, 255)) for text in texts_debut]
         pygame.display.set_caption("Fuyez les maths approfondies!!")
