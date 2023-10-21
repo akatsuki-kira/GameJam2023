@@ -48,7 +48,7 @@ class MapManager:
         # On enregistre la liste des mondes et les points de tp respectifs de ceux-ci
         self.register_map("first_map", 
                           portals=[Portal(from_world="first_map", target_world="first_map", origin_point="go_back", target_point="back")])
-
+        self.register_map('CouloirA22')
 
 
         self.teleport_player_at_checkpoint()
@@ -91,16 +91,13 @@ class MapManager:
         # Vérifie les obj dans lesquels le joueur entre
         for obj in tmx_data.objects:
             if obj.name:
-                if obj.name.startswith('obj_'):
+                if obj.name.startswith('obj'):
                     with open(f"src\data\dialogues\{name}.json", 'r', encoding='utf-8') as f:
                         data = json.load(f)
                         dialogue = data[obj.name[4:]]
                     interactions.append(Interaction(zone=pygame.Rect(obj.x, obj.y, obj.width, obj.height), dialogs=dialogue, name = obj.name))
             if obj.col == True:
                 walls.append(pygame.Rect(obj.x, obj.y, obj.width, obj.height))  # Définis comme un mur les objets an fonct° de leurs positions et leurs tailles
-
-
-
 
         # Dessiner le groupe de calque
         group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)
@@ -170,6 +167,11 @@ class MapManager:
             self.player.position[1] = data[1]  # Remplace la position en y du joueur par les coordonée en y sauvegardé
             self.player.position[1] = data[1]  # Remplace la position en y du joueur par les coordonée en y sauvegardé
         self.player.save_location()
+
+    def sauvegarde(self):
+        with open(r'src\data.json', 'w', encoding='utf-8') as f:
+            json.dump([self.player.position[0], self.player.position[1], self.current_map, self.get_map().allow_suicide], f, indent=4)
+
 
     def draw(self):
         self.get_group().draw(self.screen)

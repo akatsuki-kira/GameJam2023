@@ -5,7 +5,7 @@ class Startscreen(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self._began = False
-        self.image = pygame.image.load("demarrage.png")
+        self.image = pygame.image.load("Noemie\demarrage.png")
         self.rect = self.image.get_rect()
 
 
