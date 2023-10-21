@@ -90,14 +90,12 @@ class MapManager:
         interactions = []
         # Vérifie les obj dans lesquels le joueur entre
         for obj in tmx_data.objects:
-            """
             if obj.name:
-                if obj.name.startswith('NPC_'):
+                if obj.name.startswith('obj_'):
                     with open(f"src\data\dialogues\{name}.json", 'r', encoding='utf-8') as f:
                         data = json.load(f)
                         dialogue = data[obj.name[4:]]
                     interactions.append(Interaction(zone=pygame.Rect(obj.x, obj.y, obj.width, obj.height), dialogs=dialogue, name = obj.name))
-            """
             if obj.col == True:
                 walls.append(pygame.Rect(obj.x, obj.y, obj.width, obj.height))  # Définis comme un mur les objets an fonct° de leurs positions et leurs tailles
 

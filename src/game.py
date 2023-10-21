@@ -1,7 +1,7 @@
 import pygame
 from player import Player
 import map
-#from dialogs import DialogBox
+from dialogs import DialogBox
 
 class Game:
 
@@ -13,7 +13,7 @@ class Game:
         # Generer un joueur
         self.player = Player()  # Détermine la position du joueur
         self.map_manager = map.MapManager(self.screen, self.player)
-        #self.dialog_box = DialogBox()
+        self.dialog_box = DialogBox()
         self.player.change_name(self.map_manager.get_map().player_sprite)
 
 
@@ -60,7 +60,7 @@ class Game:
             mouvement = self.handle_input(mouvement) # Enregistre les entrée de main du joueur
             self.update()  # Update de la position du joueur
             self.map_manager.draw()  # Dessine la carte et centre la caméra
-            #self.dialog_box.render(self.screen)
+            self.dialog_box.render(self.screen)
 
             self.map_manager.render_map(self.screen)
             
