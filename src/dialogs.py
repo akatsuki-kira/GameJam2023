@@ -11,7 +11,7 @@ class DialogBox:
         self.texts = []
         self.text_index = 0
         self.letter_index = 0
-        self.font = pygame.font.Font('dialogs/dialog_font.ttf', 29)
+        self.font = pygame.font.Font('dialogs/dialog2.otf', 23)
         self.reading = False
         self.player = Player()
 
