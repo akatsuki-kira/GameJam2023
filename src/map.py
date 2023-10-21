@@ -104,7 +104,7 @@ class MapManager:
                 walls.append(pygame.Rect(obj.x, obj.y, obj.width, obj.height))  # Définis comme un mur les objets an fonct° de leurs positions et leurs tailles
 
         # Dessiner le groupe de calque
-        group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)
+        group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=4)
         group.add(self.player)
 
         # Récuperer tout les NPC pour les ajouter au groupe

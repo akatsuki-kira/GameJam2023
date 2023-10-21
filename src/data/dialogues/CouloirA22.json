@@ -1,5 +1,11 @@
 {
     "chaise_kinky": ["Chaise Kinky", 1, ["J'adore le face Sitting, si tu me comprend pas bouge.."]],
-    "sainte_chaise": ["St Chaise", 1, ["L'individue en face de moi est bizarre, iel me fait peur..."]]
+    "sainte_chaise": ["St Chaise", 1, ["L'individue en face de moi est bizarre, iel me fait peur..."]],
+    "dechets": ["dechets", 1, ["Qui à laissé ces déchets ici ?", "Tout ces meubles bloquent l'entrée, impossible de les déplacer..."]],
+    "pommes": ["pommes", 1, ["Il y à des pommes ici, elles sont dans un sale état."]],
+    "miroiresale": ["Miroir", 1, ["Un miroire sale semble reflété quelque chose, impossible de dinstingué ce dont il s'agit."]],
+    "vieuxmeubles": ["Meubles", 1, ["Une pile de vieux meubles bloquent le passage."]],
+    "burreau": ["Burreau", 1, ["Ce burreau à été épargné par l'age, c'est bien étrange..."]],
+    "armoire": ["Armoire", 1, ["C'est une grosse armoire :OOO"]]
     
 }
