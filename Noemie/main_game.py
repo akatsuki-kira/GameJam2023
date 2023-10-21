@@ -3,6 +3,7 @@ from pygame.locals import *
 import sys
 import random
 from classes import Startscreen, Player
+from dialogs import DialogBox
 # from tkinter import filedialog
 # from tkinter import *
 

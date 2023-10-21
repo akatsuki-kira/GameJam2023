@@ -83,31 +83,47 @@ class Game:
             
         pygame.quit()   
 
-    class Start_Screen:
+class Start_Screen:
 
-        def __init__(self):
-            # Crée la fenètre du jeu
-            self.screen = pygame.display.set_mode((1200,720))  # Crée une fenètre de 560 de large et 560 de haut (en pixel)
-            pygame.display.set_caption("Omori 2 - Le retour du jedi.")  # Renome la fenètre "Omori 2 - Le retour du jedi"
+    def __init__(self):
+        # Crée la fenètre du jeu
+        self.screen = pygame.display.set_mode((1200,720))  
+        pygame.display.set_caption("Omori 2 - Le retour du jedi.")  # Renome la fenètre "Omori 2 - Le retour du jedi"
+        self.texts_debut = [
+            "Depuis quelques années, on observe une montée de cas de phobie des mathématiques chez les jeunes étudiants bordelais.",
+            "Les scientifiques tentèrent d'expliquer ça... En vain. Pourquoi avaient-ils autant peur?",
+            "Les discours étaient confus, irrationnels... Ils disaient voir des fantômes, avoir la sensation d'être hantés.",
+            "Quand tout à coup, une jeune aventurière eut une idée.",
+            "En 20XX, dû à un grand scandale à l'échelle internationale, l'Université Sciences et Technologies de Bordeaux ferma ses portes.",
+            "Le bâtiment fût laissé en ruines. Cela devint rapidement un endroit considéré comme hanté.",
+            "Et si la source de ce mal-être venait des bâtiments de sciences de ce campus abandonné?",
+            "..."
+        ]
+        self.dialog_box = DialogBox()
 
-        def start_game(self):
+    def start_game(self):
 
-            clock = pygame.time.Clock()  # Prélude de la ligne 59
-            #pygame.display.set_icon(pygame.image.load("icon.jpg").convert())
-            running = True
-            game = Game()
+        clock = pygame.time.Clock()  
+        running = True
+        game = Game()
+        self.screen.blit(pygame.transform.scale(pygame.image.load(f'images\debut_fondnoir.png'), (1200, 720)), (0, 0))
+        index = 0
+        while running: 
+            pygame.display.flip()
+            self.dialog_box.render(self.screen)
 
-            while running:
-                self.screen.blit(pygame.transform.scale(pygame.image.load(f'start_screen.png'), (1200, 720)), (0, 0))
-                pygame.display.flip()
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:  # Vérifie si l'utilisateur à tenter de fermer la fenètre avec la croix rouge
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:  # Vérifie si l'utilisateur à tenter de fermer la fenètre avec la croix rouge
+                        running = False
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        if index == 7:
                             running = False
-                    elif event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_SPACE:
-                                running = False
-                                game.run()
-                                running = False
-                clock.tick(20)  # Limite le jeu à 60 Actualisation pas seconde
+                            Game().run()
+                        index += 1
+                        self.dialog_box.execute(self.texts_debut, "vieux")
+            print(index)
 
-            pygame.quit()
+            clock.tick(20) 
+
+        pygame.quit()
