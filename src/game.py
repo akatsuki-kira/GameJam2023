@@ -20,7 +20,6 @@ class Game:
     def handle_input(self, mouvement):  # Déplacement du joueur
         pressed = pygame.key.get_pressed()
         if pressed[pygame.K_z]:  # Haut
-            print('up')
             self.player.move_up()
             return 'up'
         elif pressed[pygame.K_d]:  # Droite
@@ -69,7 +68,7 @@ class Game:
 
             for event in pygame.event.get():  # Liste des évènement
                 if event.type == pygame.QUIT:  # Vérifie si l'utilisateur à tenter de fermer la fenètre avec la croix rouge
-                    self.map_manager.sauvegarde()
+                    #self.map_manager.sauvegarde()
                     running = False
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:

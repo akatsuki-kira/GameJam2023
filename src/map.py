@@ -12,7 +12,7 @@ class Portal:
     from_world: str  # Monde avant TP
     origin_point: str  # Point d'origine de la téléportation (porte de maison, téléporteur)
     target_world: str  # Monde après TP
-    teleport_point: str  # Point d'arrivé après TP
+    target_point: str  # Point d'arrivé après TP
 
 @dataclass
 class Interaction:
@@ -46,7 +46,8 @@ class MapManager:
         self.press_m = False
 
         # On enregistre la liste des mondes et les points de tp respectifs de ceux-ci
-        self.register_map("first_map")
+        self.register_map("first_map", 
+                          portals=[Portal(from_world="first_map", target_world="first_map", origin_point="go_back", target_point="back")])
 
 
 
@@ -142,9 +143,8 @@ class MapManager:
                 if self.player.feet.colliderect(rect):
                     copy_portal = portal
                     self.current_map = portal.target_world
-                    self.teleport_player(copy_portal.teleport_point)
+                    self.teleport_player(copy_portal.target_point)
                     self.player.change_name(self.get_map().player_sprite)
-                    self.player.change_suicide_permission(self.get_map().allow_suicide)
                     pygame.mixer.stop() 
         #collision
         for sprite in self.get_group().sprites(): # Pour toute les entité:
