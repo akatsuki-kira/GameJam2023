@@ -4,12 +4,12 @@ from pygame.locals import *
 personalities = [
     "pong",
     "quiz",
-    "battle",
+    "battle"
 ]
 class Fantomaths(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self._image = pygame.image.load("fantomaths.gif")
+        self._image = pygame.image.load("../images/fantomaths.gif")
         #self._image = pygame.transform.scale(self._image, (x,y))
         self.rect = self.image.get_rect() 
         self._name = "Fantomaths"
@@ -23,7 +23,7 @@ class Fantomaths(pygame.sprite.Sprite):
 class Robarbre(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self._image = pygame.image.load("robarbre.gif")
+        self._image = pygame.image.load("../images/robarbre.gif")
         #self._image = pygame.transform.scale(self._image, (x,y))
         self.rect = self.image.get_rect() 
         self._name = "Robarbre"
@@ -37,7 +37,7 @@ class Robarbre(pygame.sprite.Sprite):
 class Chitrouille(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self._image = pygame.image.load("chitrouille.gif")
+        self._image = pygame.image.load("../images/chitrouille.gif")
         #self._image = pygame.transform.scale(self._image, (x,y))
         self.rect = self.image.get_rect() 
         self._name = "Chitrouille"
@@ -51,7 +51,7 @@ class Chitrouille(pygame.sprite.Sprite):
 class Cerftete(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self._image = pygame.image.load("cerf-tête.gif")
+        self._image = pygame.image.load("../images/cerf-tête.gif")
         #self._image = pygame.transform.scale(self._image, (x,y))
         self.rect = self.image.get_rect() 
         self._name = "Cerf-Tête"
@@ -65,7 +65,7 @@ class Cerftete(pygame.sprite.Sprite):
 class Hector(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self._image = pygame.image.load("hector.gif")
+        self._image = pygame.image.load("../images/hector.gif")
         #self._image = pygame.transform.scale(self._image, (x,y))
         self.rect = self.image.get_rect() 
         self._name = "Hector"
@@ -79,7 +79,7 @@ class Hector(pygame.sprite.Sprite):
 class Perforatrice(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self._image = pygame.image.load("perforatrice.gif")
+        self._image = pygame.image.load("../images/perforatrice.gif")
         #self._image = pygame.transform.scale(self._image, (x,y))
         self.rect = self.image.get_rect() 
         self._name = "Perforatrice"
@@ -94,7 +94,7 @@ class Perforatrice(pygame.sprite.Sprite):
 class Perforatrice2(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self._image = pygame.image.load("perforatrice2.png")
+        self._image = pygame.image.load("../images/perforatrice2.png")
         #self._image = pygame.transform.scale(self._image, (x,y))
         self.rect = self.image.get_rect() 
         self._name = "Perforatrice?"
