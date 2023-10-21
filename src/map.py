@@ -49,7 +49,15 @@ class MapManager:
         self.register_map("first_map", 
                           portals=[Portal(from_world="first_map", target_world="first_map", origin_point="go_back", target_point="back")])
         self.register_map('CouloirA22', 
+                          portals= [
+                            Portal(from_world="CouloirA22", target_world="Darwin",origin_point= "A22_Darwin_G",target_point="Porte_G_Darwin_In"),
+                            Portal(from_world="CouloirA22", target_world="Darwin",origin_point= "A22_Darwin_D",target_point="Porte_D_Darwin_In")
+                          ],
                           npcs= [NPC(name="robot", nb_points=8, dialog=["J'aime les traiiiiins"], atk=0)])
+        self.register_map('Darwin', portals=[
+                            Portal(from_world="Darwin", target_world="CouloirA22", origin_point="Porte_G_Darwin_Out", target_point="A22_Darwin_G_Out"),
+                            Portal(from_world="Darwin", target_world="CouloirA22", origin_point="Porte_D_Darwin_Out", target_point="A22_Darwin_D_Out")
+                        ])
                           
 
 
@@ -82,7 +90,7 @@ class MapManager:
                         self.player.allow_moove(True)
 
 
-    def register_map(self, name, portals=[], npcs=[], sprite_name = 'OMORI', allow_suicide = True):
+    def register_map(self, name, portals=[], npcs=[], sprite_name = 'OMORI'):
         # Charger la carte en format TMX
         tmx_data = pytmx.util_pygame.load_pygame(f"map/{name}.tmx") # Vas chercher le fichier en fonction du nom de la carte (name)
         map_data = pyscroll.data.TiledMapData(tmx_data)
