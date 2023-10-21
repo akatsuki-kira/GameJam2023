@@ -20,8 +20,6 @@ class Entity(AnimateSprite):
         self.old_position = self.position.copy()
         self.speed = 3 #Default: 3
         self.can_moove = True
-        with open(r'src\data.json', 'r', encoding='utf-8') as f:
-            self.allow_suicide = json.load(f)[3]
 
     def get_name(self):
         return self.name

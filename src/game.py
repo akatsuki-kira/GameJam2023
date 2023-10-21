@@ -121,7 +121,7 @@ class Start_Screen:
                             running = False
                             Game().run()
                         index += 1
-                        self.dialog_box.execute(self.texts_debut, "vieux")
+                        self.dialog_box.execute(self.texts_debut, "vieux", func=None)
             print(index)
 
             clock.tick(20) 

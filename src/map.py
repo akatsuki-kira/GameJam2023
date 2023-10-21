@@ -48,7 +48,9 @@ class MapManager:
         # On enregistre la liste des mondes et les points de tp respectifs de ceux-ci
         self.register_map("first_map", 
                           portals=[Portal(from_world="first_map", target_world="first_map", origin_point="go_back", target_point="back")])
-        self.register_map('CouloirA22')
+        self.register_map('CouloirA22', 
+                          npcs= [NPC(name="robot", nb_points=8, dialog=["J'aime les traiiiiins"], atk=0)])
+                          
 
 
         self.teleport_player_at_checkpoint()
@@ -58,7 +60,9 @@ class MapManager:
         for sprite in self.get_group().sprites():
             if sprite.feet.colliderect(self.player.rect) and type(sprite) is NPC: 
                 self.player.allow_moove(False)
-                dialog_box.execute(sprite.dialog, sprite.name)
+
+                ### Ajout des fonctions de jeu de Noémie
+                dialog_box.execute(sprite.dialog, sprite.name, func = 1)
                 if dialog_box.get_text_index() == -1:
                     self.player.allow_moove(True)
         return True
