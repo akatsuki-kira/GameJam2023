@@ -18,10 +18,10 @@ class AnimateSprite(pygame.sprite.Sprite):
     def update_sprite(self, name):
         self.sprite_sheet = pygame.image.load(f'sprites/{name}.png')
         self.images = {
-            'down': self.get_images(0),
-            'left': self.get_images(32),
-            'right': self.get_images(64),
-            'up': self.get_images(96),
+            'down': [pygame.transform.scale(i, (42,42)) for i in self.get_images(0)],
+            'left': [pygame.transform.scale(i, (42,42)) for i in self.get_images(32)],
+            'right': [pygame.transform.scale(i, (42,42)) for i in self.get_images(64)],
+            'up': [pygame.transform.scale(i, (42,42)) for i in self.get_images(96)],
         }
         return name
 
