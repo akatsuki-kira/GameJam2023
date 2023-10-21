@@ -82,3 +82,32 @@ class Game:
 
             
         pygame.quit()   
+
+    class Start_Screen:
+
+        def __init__(self):
+            # Crée la fenètre du jeu
+            self.screen = pygame.display.set_mode((1200,720))  # Crée une fenètre de 560 de large et 560 de haut (en pixel)
+            pygame.display.set_caption("Omori 2 - Le retour du jedi.")  # Renome la fenètre "Omori 2 - Le retour du jedi"
+
+        def start_game(self):
+
+            clock = pygame.time.Clock()  # Prélude de la ligne 59
+            #pygame.display.set_icon(pygame.image.load("icon.jpg").convert())
+            running = True
+            game = Game()
+
+            while running:
+                self.screen.blit(pygame.transform.scale(pygame.image.load(f'start_screen.png'), (1200, 720)), (0, 0))
+                pygame.display.flip()
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:  # Vérifie si l'utilisateur à tenter de fermer la fenètre avec la croix rouge
+                            running = False
+                    elif event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_SPACE:
+                                running = False
+                                game.run()
+                                running = False
+                clock.tick(20)  # Limite le jeu à 60 Actualisation pas seconde
+
+            pygame.quit()

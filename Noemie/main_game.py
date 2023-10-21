@@ -18,11 +18,12 @@ class App:
  
     def on_init(self):
         pygame.init()
-        self.font = pygame.font.SysFont('Times New Roman', 30)
-        self.text_box_debut = pygame.Rect(500, 200, 1000, 100)
+        self.font = pygame.font.SysFont('Arial', 30)
+        self.text_box_debut = pygame.Rect((WIDTH//2)-750, 800, 1500, 200)
         self.index = -1
         self.space_released = True
-        texts_debut = [
+        self._intro_done = False
+        self.texts_debut = [
             "Depuis quelques années, on observe une montée de cas de phobie des mathématiques chez les jeunes étudiants bordelais.",
             "Les scientifiques tentèrent d'expliquer ça... En vain. Pourquoi avaient-ils autant peur?",
             "Les discours étaient confus, irrationnels... Ils disaient voir des fantômes, avoir la sensation d'être hantés.",
@@ -30,9 +31,10 @@ class App:
             "En 20XX, dû à un grand scandale à l'échelle internationale, l'Université Sciences et Technologies de Bordeaux ferma ses portes.",
             "Le bâtiment fût laissé en ruines. Cela devint rapidement un endroit considéré comme hanté.",
             "Et si la source de ce mal-être venait des bâtiments de sciences de ce campus abandonné?"
+            "..."
         ]
 
-        self.text_renders = [self.font.render(text, True, (0, 0, 255)) for text in texts_debut]
+        self.text_renders = [self.font.render(text, True, (255,255,255)) for text in self.texts_debut]
         pygame.display.set_caption("Fuyez les maths approfondies!!")
         self._display_surf = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)
         self._running = True
@@ -63,6 +65,7 @@ class App:
         if self.on_init() == False:
             self._running = False
         COUNT = 0
+        COUNT_DEMARRAGE = 0
         pygame.display.set_caption("Fuyez les maths approfondies!!")
 
 
@@ -76,19 +79,31 @@ class App:
                 demarrage.render(self._display_surf)
                 print("update")
 
-            if demarrage._began:
-                self._display_surf.fill((0,0,0))
-                pygame.draw.rect(self._display_surf, (0, 255, 0), self.text_box_debut, width=2)
-                if pygame.key.get_pressed()[pygame.K_SPACE] and space_released:
-                    space_released = False
-                    index = (index + 1) if (index + 1) != len(self.text_renders) else 0
-                elif not pygame.key.get_pressed()[pygame.K_SPACE]:
-                    space_released = True
-            else:
-                index = -1
+            if not self._intro_done:
+                print(COUNT_DEMARRAGE, len(self.text_renders))
+                if demarrage._began:
+                    self._display_surf.fill((0,0,0))
+                    pygame.draw.rect(self._display_surf, (255, 255, 255), self.text_box_debut, width=2)
+                    if pygame.key.get_pressed()[pygame.K_SPACE] and space_released:
+                        space_released = False
+                        COUNT_DEMARRAGE+=1
+                        index = (index + 1) if (index + 1) != len(self.text_renders) else 0
+                    elif not pygame.key.get_pressed()[pygame.K_SPACE]:
+                        space_released = True
+                        
+                else:
+                    index = -1
 
-            if index != -1:
-                self._display_surf.blit(self.text_renders[index], (0, 0))
+                if index != -1:
+                    self._display_surf.blit(self.text_renders[index], ((WIDTH//2)-745, 805))
+
+                if COUNT_DEMARRAGE == len(self.text_renders):
+                    self._intro_done = True
+                
+                    self._display_surf.fill((0,0,0))
+                    pygame.time.delay(2000)
+
+                
 
 
             pygame.display.flip()
