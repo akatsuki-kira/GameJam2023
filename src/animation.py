@@ -12,7 +12,6 @@ class AnimateSprite(pygame.sprite.Sprite):
             'left': self.get_images(32),
             'right': self.get_images(64),
             'up': self.get_images(96),
-            'suicide': self.get_multiple(0, 128)
         }
         self.speed = 3 # Vitesse du joueur
 
@@ -23,7 +22,6 @@ class AnimateSprite(pygame.sprite.Sprite):
             'left': self.get_images(32),
             'right': self.get_images(64),
             'up': self.get_images(96),
-            'suicide': self.get_multiple(0, 128)
         }
         return name
 

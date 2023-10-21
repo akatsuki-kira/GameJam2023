@@ -46,9 +46,7 @@ class MapManager:
         self.press_m = False
 
         # On enregistre la liste des mondes et les points de tp respectifs de ceux-ci
-        self.register_map("White_Space", portals=[
-            Portal(from_world="White_Space", origin_point="leave_white_space", target_world ="house_1", teleport_point="origin")
-        ], npcs=[])
+        self.register_map("first_map")
 
 
 

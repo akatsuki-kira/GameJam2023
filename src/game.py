@@ -7,8 +7,8 @@ class Game:
 
     def __init__(self):
         # Crée la fenètre du jeu
-        self.screen = pygame.display.set_mode((1200,720))  # Crée une fenêtre de 560 de large et 560 de haut (en pixel)
-        pygame.display.set_caption("Omori 2 - Le retour du jedi.")  # Renomme la fenêtre 
+        self.screen = pygame.display.set_mode((1200,720)) 
+        pygame.display.set_caption("GameJam2023")  # Renomme la fenêtre 
 
         # Generer un joueur
         self.player = Player()  # Détermine la position du joueur
@@ -43,11 +43,11 @@ class Game:
 
     def run(self):
 
-        clock = pygame.time.Clock()  # Prélude de la ligne 59
+        clock = pygame.time.Clock()
         mouvement = 'down'
 
         # Boucle du jeu:
-        running = True  # On incrémente à la variable running, la valeur True
+        running = True 
 
         #Initialisation du jeu:
         #pygame.display.set_icon(pygame.image.load("SmallLogo.png").convert())
