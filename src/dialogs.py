@@ -18,11 +18,11 @@ class DialogBox:
     def get_text_index(self):
         return int(self.text_index)
 
-    def execute(self, dialog=[], name = ''):
+    def execute(self, dialog=[], name = '', func = None):
         if self.reading:
             if self.text_index < 0:
                 self.text_index = 0
-            self.next_text()
+            self.next_text(name)
         else:
             self.reading = True
             self.text_index = 0
@@ -62,7 +62,7 @@ class DialogBox:
 
 
 
-    def next_text(self):
+    def next_text(self, name, func = None):
         self.text_index += 1
         self.letter_index = 0
 
@@ -70,3 +70,5 @@ class DialogBox:
             # fermer le dialogue
             self.reading = False
             self.text_index = -1
+
+            # On appelle la fonction
