@@ -57,7 +57,7 @@ class Cerftete(pygame.sprite.Sprite):
         self._image = pygame.image.load("images/cerf-tete.gif")
         #self._image = pygame.transform.scale(self._image, (x,y))
         self.rect = self._image.get_rect() 
-        self._name = "cerf-tête"
+        self._name = "cerftete"
         self._personality = None
         self._hp = 0
         self._atk = 10
@@ -93,28 +93,13 @@ class Perforatrice(pygame.sprite.Sprite):
     def render(self, surface):
         surface.blit(self._image, (0,0))
 
-
-class Perforatrice2(pygame.sprite.Sprite):
-    def __init__(self):
-        super().__init__()
-        self._image = pygame.image.load("images/perforatrice2.png")
-        #self._image = pygame.transform.scale(self._image, (x,y))
-        self.rect = self._image.get_rect() 
-        self._name = "perforatrice?"
-        self._personality = None
-        self._hp = 0
-        self._atk = 10
-        self._dfs = 10
-    def render(self, surface):
-        surface.blit(self._image, (0,0))
-
 class MathsTeacher(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self._image = pygame.image.load("")
+        self._image = pygame.image.load("images/bossfinalff.png")
         #self._image = pygame.transform.scale(self._image, (x,y))
         self.rect = self._image.get_rect() 
-        self._name = "Mr. Coulangênant"
+        self._name = "coulangenant"
         self._personality = "boss"
         self._hp = 0
         self._atk = 10

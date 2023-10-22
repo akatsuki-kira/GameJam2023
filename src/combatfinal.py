@@ -1,4 +1,4 @@
-from classes_ennemis import Robarbre, Fantomaths, Chitrouille, Cerftete, Hector, Perforatrice, sprites_
+from classes_ennemis import Robarbre, Fantomaths, Chitrouille, Cerftete, Hector, Perforatrice, MathsTeacher, sprites_
 import pygame
 from dialogs import DialogBox
 from pygame.locals import *
@@ -9,27 +9,11 @@ from minigames import quiz,pongv2,bagarre
 # from tkinter import *
 
 
-WIDTH, HEIGHT = 800,800
+WIDTH, HEIGHT = 1920,1080
 
 
-class CombatApp:
-    def __init__(self,ennemi,screen):
-        ennemi = ennemi.strip().lower()
-        if ennemi=="cerftete":
-            self._ennemi = Cerftete()
-        elif ennemi=="chitrouille":
-            self._ennemi = Chitrouille()
-        elif ennemi=="fantomaths":
-            self._ennemi = Fantomaths()
-        elif ennemi=="hector":
-            self._ennemi = Hector()
-        elif ennemi=="perforatrice":
-            self._ennemi = Perforatrice
-        elif ennemi=="robarbre":
-            self._ennemi = Robarbre()
-        else:
-            raise NameError("Ya un souci de nom d'ennemi")
-        
+class FinalCombatApp:
+    def __init__(self,screen):
         self.index = 0
         self._autodialog = 10
         self._running = True
@@ -40,19 +24,9 @@ class CombatApp:
         self._display_surf = screen
         self._fin_battle = False
         self.size = (WIDTH,HEIGHT)
-        self._name = self._ennemi._name
+        self._name = "Final"
         self._minijeu_encours = False
-        self.choix_minijeu = random.choice(["quiz","pong","bagarre"])
-        if self.choix_minijeu == "pong":
-            self.choix_minijeu = "jouer au pong contre toi!!"
-            self._nbminijeu = 1
-        elif self.choix_minijeu == "quiz":
-            self.choix_minijeu = "voir si tu réussiras son quiz!!"
-            self._nbminijeu = 2
-        elif self.choix_minijeu == "bagarre":
-            self.choix_minijeu = "te casser la gueule ?! \nExplication: Appuie sur la bone touche en une seconde pour faire des dégâts à l'ennemi. Sinon, tu perds de la vie!!"
-            self._nbminijeu = 3
-        
+
  
     def on_init(self):
         pygame.init()
@@ -61,33 +35,15 @@ class CombatApp:
         pygame.display.set_caption("Fuyez les maths approfondies!!")
         self._running = True 
         self._intro = True
-        self._color1 = pygame.Color(255, 0, 0)
         self.texts_debut = [
-            f"{self._name.capitalize()} veut se battre!!",
-            f"Il souhaite... {self.choix_minijeu}"
+            f"M. Coulangênant vous provoque dans son examen terminal!",
+            f"Il souhaite vous défier dans chaque duel à la suite!!"
         ]
-        self.texts_win = [
-            random.choice([
-                "\"Pouah! Tu as gagné! Bien joué, heheh.\" ",
-                "\"Décidément...\" ",
-                "\"De toute façon, c'est trop simple.\" ",
-                "\"T'aurais au moins pu faire genre...\" ",
-                "\"A la prochaine!\" ",
-                "\"C'est sûr que les cours de Guilhem sont + durs...\" ",
-                "\"Non mais oh?\" ",
-                "\"Bj ma quoicoubaka heheheha t'as les cramptapagnans xD\" "
-            ]),
-            f"Tu as gagné contre {self._name}!!"
+        self.texts_win = ["\"Bravo à toi.\" ",
+            f"Tu as réussi l'examen terminal!!"
         ]
-        self.texts_lose = [
-            random.choice([
-                "\"YAYYYYYYYY!!!!\" ",
-                "\"A la prochaine!\" ",
-                "\"Pourtant c'était censé être facile..\" ",
-                "\"MDR allez salut...\" ",
-                "\"Oh le big quoicouflop sucré au seum!!!\" "
-            ]),
-            f"Tu as perdu contre {self._name}!!"
+        self.texts_lose = ["\"La prochaine fois, révise mieux.\" ",
+            f"Tu as échoué à l'examen terminal!!"
         ]
         self.dialog_box = DialogBox() 
         self.db_win = DialogBox()
@@ -104,6 +60,7 @@ class CombatApp:
                 if self.index == 2:
                     self._intro = False
                     self._minijeu_encours = True
+                    self._nbminijeu=1
                 elif self.index == 5:
                     self._running = False
                 
@@ -122,6 +79,7 @@ class CombatApp:
                 if self.index == 2:
                     self._intro = False
                     self._minijeu_encours = True
+                    self._nbminijeu=1
                 elif self.index == 5:
                     self._running = False
                 
@@ -155,12 +113,10 @@ class CombatApp:
                 self.on_event(event)
     
     # --- Intro ---
-
+            rb.render(self._display_surf)
             if self._intro:
-                self._display_surf.fill((50,50,50))
+                
                 self.dialog_box.render(self._display_surf)
-                self._ennemi._image = pygame.image.load(f"images/{self._name}/{sprites_[COUNT%58]}")
-                self._ennemi.render(self._display_surf)
 
     # --- Minijeux ---
 
@@ -173,11 +129,22 @@ class CombatApp:
                     if score1>=2 or score2>=2:
                         self._win_minijeu = score1>=2
                         self._lose_minijeu = score2 >=2
-
+                    
+                    if self._win_minijeu:
+                        rb.render(self._display_surf) 
+                        pygame.display.flip()
+                        pygame.display.update()
+                        COUNT +=1
+                        pygame.time.Clock().tick(60)  
+                        pygame.time.wait(1000)
+                        self._nbminijeu = 2
+                        
+                    else:
                         self._fin_battle = True
                         self._minijeu_encours = False
                         self.index = 3
                         self._autodialog=0
+
 
                             
 
@@ -188,11 +155,15 @@ class CombatApp:
                     self._win_minijeu, self._lose_minijeu = quiz.main(self._count_quiz)
                     if self._win_minijeu==True or self._lose_minijeu==True:
 
-                        self._fin_battle = True
-                        self._minijeu_encours = False
-                        self.index = 3
-                        self._autodialog=0
+                        if self._win_minijeu:
+                            pygame.time.wait(1000)
+                            self._nbminijeu = 3
                         
+                        else:
+                            self._fin_battle = True
+                            self._minijeu_encours = False
+                            self.index = 3
+                            self._autodialog=0
 
                 # Bagarre ----------
 
@@ -201,24 +172,21 @@ class CombatApp:
                     self._win_minijeu = a>0
                     self._lose_minijeu = b>0
                     if (self._win_minijeu and not self._lose_minijeu) or (self._lose_minijeu and not self._win_minijeu):
-
                         self._fin_battle = True
-                        self._minijeu_encours = False       
-                        self.index = 3             
+                        self._minijeu_encours = False
+                        self.index = 3
                         self._autodialog=0
             
     # --- Fin minijeu ---
 
             elif self._fin_battle: 
-
-                self._display_surf.fill((50,50,50))
+                rb.render(self._display_surf)    
                 if self._win_minijeu:
                     self.db_win.render(self._display_surf)
                 elif self._lose_minijeu:
 
                     self.db_lose.render(self._display_surf)
-                self._ennemi._image = pygame.image.load(f"images/{self._name}/{sprites_[COUNT%58]}")
-                self._ennemi.render(self._display_surf)                
+            
 
             pygame.display.flip()
             pygame.display.update()
@@ -229,7 +197,7 @@ class CombatApp:
         self.on_cleanup()
 
 if __name__ == "__main__" :
-
-    theApp = CombatApp("robarbre", pygame.display.set_mode((WIDTH,HEIGHT), pygame.HWSURFACE | pygame.DOUBLEBUF))
+    theApp = FinalCombatApp(pygame.display.set_mode((WIDTH,HEIGHT), pygame.HWSURFACE | pygame.DOUBLEBUF))
+    rb = MathsTeacher()
     theApp.on_execute()
 
