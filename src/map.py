@@ -2,6 +2,8 @@ from dataclasses import dataclass
 import pygame
 import pytmx
 import pyscroll
+from combat import CombatApp
+from combatfinal import FinalCombatApp
 from player import *
 import json
 from dialogs import DialogBox
@@ -66,7 +68,13 @@ class MapManager:
                             Portal(from_world="Darwin", target_world="CouloirA22", origin_point="Porte_D_Darwin_Out", target_point="A22_Darwin_D_Out")
                         ], npcs=
                                 # Pour le boss on fait une liste de liste
-                               [NPC(name="boss", nb_points=1, dialog=[["Tu n'es pas encore prêt..."], ["Tu as battue un enemie lol"]])
+                               [NPC(name="boss", nb_points=1, dialog=[
+                                   ["Tu n'es pas encore prêt affronte les autres ennemis.."],
+                                     ["Tu manques encore d'expérience, continue.."],
+                                     ["Je sens que tu progresse, continue.."],
+                                     ["Le pouvoir nait en toi, tu es bientôt prêt.."],
+                                     ["Je sens ton pouvoir envahir la pièce, poursuit ton entrainement.."],
+                                     ["Il est l'heure, affronte ma colère !!!!!"]])
                                 ])
         self.register_map('dehors', portals=[
                             Portal(from_world="dehors", target_world="CouloirA22", origin_point="In_A22_G", target_point="A22_In_G"),
@@ -88,6 +96,7 @@ class MapManager:
         self.teleport_npcs()
 
     def check_npc_collisions(self, dialog_box):
+        enVie = True
         for sprite in self.get_group().sprites():
             if sprite.feet.colliderect(self.player.rect) and type(sprite) is NPC: 
                 self.player.allow_moove(False)
@@ -100,10 +109,12 @@ class MapManager:
                     self.player.allow_moove(True)
                     ### Ajout des fonctions de jeu de Noémie
 
+                    if sprite.state > 0 and sprite.name != "boss":
+                        enVie = CombatApp(sprite.name, screen=self.screen).on_execute()
                     #On bully l'énemie 
                     if sprite.name == "boss":
                         if self.player.exp > 5:
-                            print("DU-DU-DUEEEEL")
+                            enVie = FinalCombatApp(screen=self.screen).on_execute()
                         
                     else:
                         self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].name = f"{sprite.name}."
@@ -112,9 +123,9 @@ class MapManager:
                             self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].nb_points= 0
                             self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].dialog = ['....']
                             self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].state = 0
+            print(enVie)
                     
-                    
-        return True
+        return enVie
     
     def check_interaction_collisions(self, dialog_box):
         for interaction in self.get_interaction():
@@ -219,11 +230,6 @@ class MapManager:
             self.player.position[1] = data[1]  # Remplace la position en y du joueur par les coordonée en y sauvegardé
             self.player.position[1] = data[1]  # Remplace la position en y du joueur par les coordonée en y sauvegardé
         self.player.save_location()
-
-    def sauvegarde(self):
-        with open(r'src\data.json', 'w', encoding='utf-8') as f:
-            json.dump([self.player.position[0], self.player.position[1], self.current_map, self.get_map().allow_suicide], f, indent=4)
-
 
     def draw(self):
         self.get_group().draw(self.screen)

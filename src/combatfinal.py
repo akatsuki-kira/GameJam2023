@@ -1,4 +1,4 @@
-from classes_ennemis import Robarbre, Fantomaths, Chitrouille, Cerftete, Hector, Perforatrice, MathsTeacher, sprites_
+from classes_ennemis import MathsTeacher
 import pygame
 from dialogs import DialogBox
 from pygame.locals import *
@@ -9,7 +9,7 @@ from minigames import quiz,pongv2,bagarre
 # from tkinter import *
 
 
-WIDTH, HEIGHT = 1920,1080
+WIDTH, HEIGHT = 1200,720
 
 
 class FinalCombatApp:
@@ -26,6 +26,7 @@ class FinalCombatApp:
         self.size = (WIDTH,HEIGHT)
         self._name = "Final"
         self._minijeu_encours = False
+        self._ennemi = MathsTeacher()
 
  
     def on_init(self):
@@ -113,7 +114,7 @@ class FinalCombatApp:
                 self.on_event(event)
     
     # --- Intro ---
-            rb.render(self._display_surf)
+            self._ennemi.render(self._display_surf)
             if self._intro:
                 
                 self.dialog_box.render(self._display_surf)
@@ -131,7 +132,7 @@ class FinalCombatApp:
                         self._lose_minijeu = score2 >=2
                     
                     if self._win_minijeu:
-                        rb.render(self._display_surf) 
+                        self._ennemi.render(self._display_surf) 
                         pygame.display.flip()
                         pygame.display.update()
                         COUNT +=1
@@ -180,7 +181,7 @@ class FinalCombatApp:
     # --- Fin minijeu ---
 
             elif self._fin_battle: 
-                rb.render(self._display_surf)    
+                self._ennemi.render(self._display_surf)    
                 if self._win_minijeu:
                     self.db_win.render(self._display_surf)
                 elif self._lose_minijeu:
@@ -194,10 +195,14 @@ class FinalCombatApp:
             pygame.time.Clock().tick(60)
             self.on_loop()
             self.on_render()
-        self.on_cleanup()
+        # self.on_cleanup()
+        if self._win_minijeu:
+            return "boss"
+        elif self._lose_minijeu:
+            return False
 
 if __name__ == "__main__" :
     theApp = FinalCombatApp(pygame.display.set_mode((WIDTH,HEIGHT), pygame.HWSURFACE | pygame.DOUBLEBUF))
-    rb = MathsTeacher()
+    
     theApp.on_execute()
 

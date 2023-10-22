@@ -19,21 +19,18 @@ class Game:
 
     def handle_input(self, mouvement):  # Déplacement du joueur
         pressed = pygame.key.get_pressed()
-        if pressed[pygame.K_z]:  # Haut
+        if pressed[pygame.K_UP]:  # Haut
             self.player.move_up()
             return 'up'
-        elif pressed[pygame.K_d]:  # Droite
+        elif pressed[pygame.K_RIGHT]:  # Droite
             self.player.move_right()
             return 'right'
-        elif pressed[pygame.K_q]:  # Gauche
+        elif pressed[pygame.K_LEFT]:  # Gauche
             self.player.move_left()
             return 'left'
-        elif pressed[pygame.K_s]:  # Bas
+        elif pressed[pygame.K_DOWN]:  # Bas
             self.player.move_down()
             return 'down'
-        elif pressed[pygame.K_m]:
-            self.map_manager.press_m = True
-            return mouvement    
         else:
             return self.player.stop_animation(name = mouvement)
 
@@ -72,12 +69,13 @@ class Game:
                     running = False
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
-                        self.map_manager.check_npc_collisions(self.dialog_box)
+                        if self.map_manager.check_npc_collisions(self.dialog_box) == False:
+                            running = False
+                            End_Screen().end_game("dead")
+                        elif self.map_manager.check_npc_collisions(self.dialog_box) == "boss":   
+                            End_Screen().end_game("gagne")
+                            running = False                           
                         self.map_manager.check_interaction_collisions(self.dialog_box)
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_l:
-                        self.map_manager.sauvegarde()
-                        running = False
             clock.tick(60)
 
             
@@ -90,6 +88,7 @@ class Start_Screen:
         self.screen = pygame.display.set_mode((1200,720))  
         pygame.display.set_caption("amelia 2 - Le retour du jedi.")  # Renome la fenètre "amelia 2 - Le retour du jedi"
         self.texts_debut = [
+            "COMMANDES: Flèches directionnelles pour bouger et espace pour interagir.",
             "Depuis quelques années, on observe une montée de cas de phobie des mathématiques chez les jeunes étudiants bordelais..",
             "Les scientifiques tentèrent d'expliquer ça... En vain. Pourquoi avaient-ils autant peur ??",
             "Les discours étaient confus, irrationnels... Ils disaient voir des fantômes, avoir la sensation d'être hantés..",
@@ -121,6 +120,35 @@ class Start_Screen:
                             Game().run()
                         index += 1
                         self.dialog_box.execute(self.texts_debut, "vieux", func=None)
+
+            clock.tick(20) 
+
+        pygame.quit()
+
+class End_Screen:
+
+    def __init__(self):
+        # Crée la fenètre du jeu
+        self.screen = pygame.display.set_mode((1200,720))  
+        pygame.display.set_caption("amelia 2 - Le retour du jedi.")  # Renome la fenètre "amelia 2 - Le retour du jedi"
+        self.dialog_box = DialogBox()
+
+    def end_game(self, win):
+
+        clock = pygame.time.Clock()  
+        running = True
+        self.screen.blit(pygame.transform.scale(pygame.image.load(f'images\{win}.png'), (1200, 720)), (0, 0))
+        while running: 
+            pygame.display.flip()
+            self.dialog_box.render(self.screen)
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:  # Vérifie si l'utilisateur à tenter de fermer la fenètre avec la croix rouge
+                        running = False
+                elif event.type == pygame.KEYDOWN:
+                        if win == "dead":
+                            Game().run()
+                        running = False
 
             clock.tick(20) 
 

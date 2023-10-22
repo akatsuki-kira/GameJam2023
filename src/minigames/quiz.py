@@ -50,7 +50,6 @@ class Quiz:
         self.txt_input.pack()
         self.button1.pack()
         self.root.update()
-        print(self._question, self._answer)
         self.root.mainloop()
 
         
@@ -63,14 +62,14 @@ class Quiz:
             if isinstance(self._answer,tuple):
                 if self._data not in map(lambda x:x.lower().strip(),self._answer):
                     self._badanswer=True
-                    self.label_qst['text']="FAUX!"
+                    self.label_qst['text']=f"FAUX! réponse={self._answer}"
                 else:
                     self._goodanswer=True
                     self.label_qst['text']="Bien joué!"
             else:
                 if self._data != self._answer.lower().strip():
                     self._badanswer=True
-                    self.label_qst['text']="FAUX!"
+                    self.label_qst['text']=f"FAUX! réponse={self._answer}"
                 else:
                     self._goodanswer=True
                     self.label_qst['text']="Bien joué!"
@@ -84,7 +83,6 @@ def main(x):
         return (False, True)
     q = Quiz()
     q.handler()
-    print(q._goodanswer, q._badanswer)
     return (q._goodanswer, q._badanswer)
 	
 

@@ -76,7 +76,6 @@ def main(screen):
                 text = font.render(f"Appuie sur la touche {touche[0]}!!",True,(255,255,255),(0,0,0))
             else:
                 dt = clock.tick(60) / 1000
-                print(f"{dt}///{dmax}")
                 if dt<dmax:
                     text = font.render("Nice!",True,(255,255,255),(0,0,0))
                     vieennemi-=1

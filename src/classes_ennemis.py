@@ -97,7 +97,7 @@ class MathsTeacher(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self._image = pygame.image.load("images/bossfinalff.png")
-        #self._image = pygame.transform.scale(self._image, (x,y))
+        self._image = pygame.transform.scale(self._image, (1200,720))
         self.rect = self._image.get_rect() 
         self._name = "coulangenant"
         self._personality = "boss"

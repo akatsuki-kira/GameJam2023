@@ -28,7 +28,7 @@ class CombatApp:
         elif ennemi=="robarbre":
             self._ennemi = Robarbre()
         else:
-            raise NameError("Ya un souci de nom d'ennemi")
+            return
         
         self.index = 0
         self._autodialog = 10
@@ -226,7 +226,11 @@ class CombatApp:
             pygame.time.Clock().tick(60)
             self.on_loop()
             self.on_render()
-        self.on_cleanup()
+        # self.on_cleanup()
+        if self._win_minijeu:
+            return True
+        elif self._lose_minijeu:
+            return False
 
 if __name__ == "__main__" :
 
