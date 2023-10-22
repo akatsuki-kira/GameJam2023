@@ -1,41 +1,37 @@
 import pygame
  
-pygame.init()
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255,0,0)
  
-font20 = pygame.font.Font('freesansbold.ttf', 20)
+font20 = pygame.font.SysFont('Cheese Burger', 20)
 
-WIDTH, HEIGHT = 900, 600
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Pong")
-clock = pygame.time.Clock()
-FPS = 30
+WIDTH, HEIGHT = 800, 800
 
 # Player class
 class Striker:
 	
 	# Take the initial position,
 	# dimensions, speed and color of the object
-	def __init__(self, posx, posy, width, height, speed, color):
+	def __init__(self, posx, posy, width, height, speed, color,screen):
 		self.posx = posx
 		self.posy = posy
 		self.width = width
 		self.height = height
 		self.speed = speed
 		self.color = color
+		self._screen = screen
 		# Rect that is used to control the
 		# position and collision of the object
 		self.geekRect = pygame.Rect(posx, posy, width, height)
 		# Object that is blit on the screen
-		self.geek = pygame.draw.rect(screen, self.color, self.geekRect)
+		self.geek = pygame.draw.rect(self._screen, self.color, self.geekRect)
 
 	# Used to display the object on the screen
 	def display(self):
-		self.geek = pygame.draw.rect(screen, self.color, self.geekRect)
+		self.geek = pygame.draw.rect(self._screen, self.color, self.geekRect)
 
 	# Used to update the state of the object
 	# yFac represents the direction of the striker movement
@@ -66,7 +62,7 @@ class Striker:
 		textRect = text.get_rect()
 		textRect.center = (x, y)
 
-		screen.blit(text, textRect)
+		self._screen.blit(text, textRect)
 
 	def getRect(self):
 		return self.geekRect
@@ -77,22 +73,23 @@ class StrikerCPU:
 	
 	# Take the initial position,
 	# dimensions, speed and color of the object
-	def __init__(self, posx, posy, width, height, speed, color):
+	def __init__(self, posx, posy, width, height, speed, color,screen):
 		self.posx = posx
 		self.posy = posy
 		self.width = width
 		self.height = height
 		self.speed = speed
 		self.color = color
+		self._screen=screen
 		# Rect that is used to control the
 		# position and collision of the object
 		self.geekRect = pygame.Rect(posx, posy, width, height)
 		# Object that is blit on the screen
-		self.geek = pygame.draw.rect(screen, self.color, self.geekRect)
+		self.geek = pygame.draw.rect(self._screen, self.color, self.geekRect)
 
 	# Used to display the object on the screen
 	def display(self):
-		self.geek = pygame.draw.rect(screen, self.color, self.geekRect)
+		self.geek = pygame.draw.rect(self._screen, self.color, self.geekRect)
 
 	# Used to update the state of the object
 	# yFac represents the direction of the striker movement
@@ -123,7 +120,7 @@ class StrikerCPU:
 		textRect = text.get_rect()
 		textRect.center = (x, y)
 
-		screen.blit(text, textRect)
+		self._screen.blit(text, textRect)
 
 	def getRect(self):
 		return self.geekRect
@@ -131,7 +128,7 @@ class StrikerCPU:
 
 # Ball class
 class Ball:
-	def __init__(self, posx, posy, radius, speed, color):
+	def __init__(self, posx, posy, radius, speed, color,screen):
 		self.posx = posx
 		self.posy = posy
 		self.radius = radius
@@ -139,13 +136,14 @@ class Ball:
 		self.color = color
 		self.xFac = 1
 		self.yFac = -1
+		self._screen = screen
 		self.ball = pygame.draw.circle(
-			screen, self.color, (self.posx, self.posy), self.radius)
+			self._screen, self.color, (self.posx, self.posy), self.radius)
 		self.firstTime = 1
 
 	def display(self):
 		self.ball = pygame.draw.circle(
-			screen, self.color, (self.posx, self.posy), self.radius)
+			self._screen, self.color, (self.posx, self.posy), self.radius)
 
 	def update(self):
 		self.posx += self.speed*self.xFac
@@ -188,13 +186,12 @@ class Ball:
 		return self.ball
 
 # Game Manager
-def main():
-    running = True
+def main(screen,enemyname):
 
     # Defining the objects
-    geek1 = Striker(20, 0, 10, 100, 10, GREEN)
-    geek2 = StrikerCPU(WIDTH-30, 0, 10, 100, 10, RED)
-    ball = Ball(WIDTH//2, HEIGHT//2, 7, 7, WHITE)
+    geek1 = Striker(20, 0, 10, 100, 10, GREEN,screen)
+    geek2 = StrikerCPU(WIDTH-30, 0, 10, 100, 10, RED,screen)
+    ball = Ball(WIDTH//2, HEIGHT//2, 7, 7, WHITE,screen)
 
     listOfGeeks = [geek1, geek2]
 
@@ -207,8 +204,6 @@ def main():
     # Event handling
         if geek1Score<3 and geek2Score<3:
             for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_w:
                         geek1YFac = -1
@@ -247,7 +242,7 @@ def main():
 
             # Displaying the scores of the players
             geek1.displayScore("Player : ", geek1Score, 100, 20, WHITE)
-            geek2.displayScore("Enemy : ", geek2Score, WIDTH-100, 20, WHITE)
+            geek2.displayScore(f"{enemyname} : ", geek2Score, WIDTH-100, 20, WHITE)
 			
         elif geek1Score>=3:
             for event in pygame.event.get():
@@ -268,13 +263,7 @@ def main():
             textRect.center = (WIDTH//2, HEIGHT//2)
             screen.fill(RED)
             screen.blit(text, textRect)
-			
 
-        pygame.display.update()
-        COUNT +=1
-        # Adjusting the frame rate
-        clock.tick(FPS)
-	
 if __name__=="__main__":
 	main()
 	pygame.quit
