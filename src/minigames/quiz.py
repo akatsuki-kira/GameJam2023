@@ -19,10 +19,16 @@ FPS = 30
 
 qst = [
     ("Quel est le sinus de pi/2 ?","1"),
-    ("D'où vient la couleur rouge du sang?","Hémoglobine"),
-    ("Si je fais tomber un corps du 10e étage, sa trajectoire est...",("Rectiligne","Linéaire")),
-    ("La loi des noeuds stipule que la somme des intensités allant dans un noeud est...",("Nulle",0)),
-    ("Comment écrit-on la molécule de l'éthanol?","C2H6O")
+    ("D'où vient la couleur rouge du sang?",("Hémoglobine","l'hémoglobine")),
+    ("Si je fais tomber un corps du 10e étage, \nsa trajectoire est...",("Rectiligne","Linéaire")),
+    ("La loi des noeuds stipule que la somme des \nintensités allant dans un noeud est...",("Nulle","0")),
+    ("Comment écrit-on la molécule de l'éthanol?","C2H6O"),
+
+    ("0.24999999... est la décomposition \ndécimale ______ de 1/4. (compléter)","impropre"),
+    ("Le diamant est composé de (atome)...","carbone"),
+    ("Quel est le plus grand ensemble de nombres? \n(nom, ou lettre)",("complexes","complexe","c")),
+
+    ("La développeuse des combats a consommé...\n1: De la drogue\n2: 1 litre de monster\n3: Rien, la pauvre n'a pas mangé depuis 2 jours","2"),
 ]
 
 class Quiz:
@@ -57,19 +63,19 @@ class Quiz:
             if isinstance(self._answer,tuple):
                 if self._data not in map(lambda x:x.lower().strip(),self._answer):
                     self._badanswer=True
-                    self.label_qst['text']="WRONG!"
+                    self.label_qst['text']="FAUX!"
                 else:
                     self._goodanswer=True
-                    self.label_qst['text']="That's right!"
+                    self.label_qst['text']="Bien joué!"
             else:
                 if self._data != self._answer.lower().strip():
                     self._badanswer=True
-                    self.label_qst['text']="WRONG!"
+                    self.label_qst['text']="FAUX!"
                 else:
                     self._goodanswer=True
-                    self.label_qst['text']="That's right!"
+                    self.label_qst['text']="Bien joué!"
             self._done=True
-            self.button1['text']="Leave"
+            self.button1['text']="Quitter"
         
 
 # Game Manager
