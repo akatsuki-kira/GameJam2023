@@ -90,15 +90,14 @@ class Start_Screen:
         self.screen = pygame.display.set_mode((1200,720))  
         pygame.display.set_caption("Omori 2 - Le retour du jedi.")  # Renome la fenètre "Omori 2 - Le retour du jedi"
         self.texts_debut = [
-            "Depuis quelques années, on observe une montée de cas de phobie des mathématiques chez les jeunes étudiants bordelais.",
-            "Les scientifiques tentèrent d'expliquer ça... En vain. Pourquoi avaient-ils autant peur?",
-            "Les discours étaient confus, irrationnels... Ils disaient voir des fantômes, avoir la sensation d'être hantés.",
-            "Quand tout à coup, une jeune aventurière eut une idée.",
-            "En 20XX, dû à un grand scandale à l'échelle internationale, l'Université Sciences et Technologies de Bordeaux ferma ses portes.",
-            "Le bâtiment fût laissé en ruines. Cela devint rapidement un endroit considéré comme hanté.",
-            "Et si la source de ce mal-être venait des bâtiments de sciences de ce campus abandonné?",
-            "..."
-        ]
+            "Depuis quelques années, on observe une montée de cas de phobie des mathématiques chez les jeunes étudiants bordelais..",
+            "Les scientifiques tentèrent d'expliquer ça... En vain. Pourquoi avaient-ils autant peur ??",
+            "Les discours étaient confus, irrationnels... Ils disaient voir des fantômes, avoir la sensation d'être hantés..",
+            "Quand tout à coup, une jeune aventurière eut une idée..",
+            "En 20XX, dû à un grand scandale à l'échelle internationale, l'Université Sciences et Technologies de Bordeaux ferma ses portes..",
+            "Le bâtiment fût laissé en ruines. Cela devint rapidement un endroit considéré comme hanté..",
+            "Et si la source de ce mal-être venait des bâtiments de sciences de ce campus abandonné ??",
+            "...."]
         self.dialog_box = DialogBox()
 
     def start_game(self):
@@ -122,7 +121,6 @@ class Start_Screen:
                             Game().run()
                         index += 1
                         self.dialog_box.execute(self.texts_debut, "vieux", func=None)
-            print(index)
 
             clock.tick(20) 
 
