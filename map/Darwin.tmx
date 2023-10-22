@@ -358,7 +358,7 @@
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="25" x="265" y="248" width="275" height="38">
+  <object id="25" x="265" y="254" width="275" height="32">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>

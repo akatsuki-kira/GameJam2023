@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="70" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="85">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="70" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="89">
  <tileset firstgid="1" name="Room_Builder_32x32" tilewidth="32" tileheight="32" tilecount="391" columns="17">
   <image source="style_sheet/Room_Builder_32x32.png" width="544" height="736"/>
  </tileset>
@@ -627,6 +627,28 @@
     <property name="col" type="bool" value="false"/>
    </properties>
    <point/>
+  </object>
+  <object id="85" name="A22_In_G" x="1014" y="1119.5">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="86" name="A22_In_D" x="1679" y="1116.5">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="87" name="A22_Out_G" x="955.5" y="1140.5" width="105.5" height="46.5">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="88" name="A22_Out_D" x="1625.75" y="1137.25" width="105.5" height="46.5">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

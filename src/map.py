@@ -50,14 +50,22 @@ class MapManager:
                           portals=[Portal(from_world="first_map", target_world="first_map", origin_point="go_back", target_point="back")])
         self.register_map('CouloirA22', 
                           portals= [
+                            #Darwin
                             Portal(from_world="CouloirA22", target_world="Darwin",origin_point= "A22_Darwin_G",target_point="Porte_G_Darwin_In"),
-                            Portal(from_world="CouloirA22", target_world="Darwin",origin_point= "A22_Darwin_D",target_point="Porte_D_Darwin_In")
+                            Portal(from_world="CouloirA22", target_world="Darwin",origin_point= "A22_Darwin_D",target_point="Porte_D_Darwin_In"),
+                            #Dehors
+                            Portal(from_world="CouloirA22",target_world="dehors", origin_point="A22_Out_G", target_point="Out_A22_G"),
+                            Portal(from_world="CouloirA22",target_world="dehors", origin_point="A22_Out_D", target_point="Out_A22_D")
                           ],
                           npcs= [NPC(name="robot", nb_points=8, dialog=["J'aime les traiiiiins"], atk=0)])
         self.register_map('Darwin', portals=[
                             Portal(from_world="Darwin", target_world="CouloirA22", origin_point="Porte_G_Darwin_Out", target_point="A22_Darwin_G_Out"),
                             Portal(from_world="Darwin", target_world="CouloirA22", origin_point="Porte_D_Darwin_Out", target_point="A22_Darwin_D_Out")
                         ])
+        self.register_map('dehors', portals=[
+                            Portal(from_world="dehors", target_world="CouloirA22", origin_point="In_A22_G", target_point="A22_In_G"),
+                            Portal(from_world="dehors", target_world="CouloirA22", origin_point="In_A22_D", target_point="A22_In_D")
+        ])
                           
 
 
