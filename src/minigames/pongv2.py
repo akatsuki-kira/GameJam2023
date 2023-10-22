@@ -16,11 +16,11 @@ def main(screen):
     background.fill((0,0,0))
     bar = pygame.Surface((10,50))
     bar1 = bar.convert()
-    bar1.fill((0,0,255))
+    bar1.fill((200,200,200))
     bar2 = bar.convert()
-    bar2.fill((255,0,0))
+    bar2.fill((100,100,100))
     circ_sur = pygame.Surface((15,15))
-    circ = pygame.draw.circle(circ_sur,(0,255,0),(15/2,15/2),15/2)
+    circ = pygame.draw.circle(circ_sur,(250,25,25),(15/2,15/2),15/2)
     circle = circ_sur.convert()
     circle.set_colorkey((0,0,0))
 
@@ -29,7 +29,7 @@ def main(screen):
     bar1_y, bar2_y = 215. , 215.
     circle_x, circle_y = 307.5, 232.5
     bar1_move, bar2_move = 0. , 0.
-    speed_x, speed_y, speed_circ = 250., 250., 250.
+    speed_x, speed_y, speed_circ = 250., 250., 300.
     bar1_score, bar2_score = 0,0
     #clock and font objects
     clock = pygame.time.Clock()
