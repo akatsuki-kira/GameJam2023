@@ -81,7 +81,7 @@ class Entity(AnimateSprite):
 
 class Player(Entity):
 
-    def __init__(self, name = 'OMORI'):
+    def __init__(self, name = 'amelia'):
         super().__init__(name, 0, 0)
 
     def change_name(self, name):
@@ -101,20 +101,16 @@ class Player(Entity):
 
 
 class NPC(Entity):
-    def __init__(self, name, nb_points, atk, dialog):
+    def __init__(self, name, nb_points,dialog):
         super().__init__(name, 0, 0)
         self.nb_points = nb_points
         self.dialog = dialog
         self.points = []
         self.name = name
-        self.atk = atk
         self.speed = 1  # Vitesse du NPC, possibilité de le passer en paramètre pour faire une vitesse diferente en fonction des NPC, attention dans la fonction collision, dans map, la vitesse est remise à 1 après collision
         self.current_point = 0
         self.orientation = 'down'
 
-    def __del__(self):
-        print('del.')
-        return
 
     def teleport_spawn(self):
         location = self.points[self.current_point]
@@ -156,6 +152,3 @@ class NPC(Entity):
     
     def get_name(self):
         return self.name
-
-    def get_atk(self):
-        return self.atk

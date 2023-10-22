@@ -7,22 +7,40 @@ class AnimateSprite(pygame.sprite.Sprite):
         self.sprite_sheet = pygame.image.load(f'sprites/{name}.png')  # Fichier image du joueur
         self.animation_index = 0 # Détermine laquel des 3 images de l'entité on veut aller chercher.
         self.clock = 0
-        self.images = {
-            'down': self.get_images(0),
-            'left': self.get_images(32),
-            'right': self.get_images(64),
-            'up': self.get_images(96),
+        if name == 'amelia' or name == 'boss':
+            self.images = {
+                'down': self.get_images(0),
+                'right': self.get_images(48),
+                'left': self.get_images(96),
+                'up': self.get_images(144),
+            
+        }
+        else:
+            self.images = {
+                'down': self.get_images(0),
+                'right': self.get_images(32),
+                'left': self.get_images(64),
+                'up': self.get_images(96),
         }
         self.speed = 3 # Vitesse du joueur
 
     def update_sprite(self, name):
         self.sprite_sheet = pygame.image.load(f'sprites/{name}.png')
-        self.images = {
-            'down': [pygame.transform.scale(i, (42,42)) for i in self.get_images(0)],
-            'left': [pygame.transform.scale(i, (42,42)) for i in self.get_images(32)],
-            'right': [pygame.transform.scale(i, (42,42)) for i in self.get_images(64)],
-            'up': [pygame.transform.scale(i, (42,42)) for i in self.get_images(96)],
+        if name == 'amelia' or name == 'boss':
+            self.images = {
+                'down': [pygame.transform.scale(i, (27,40)) for i in self.get_images(0)],
+                'right': [pygame.transform.scale(i, (27,40)) for i in self.get_images(48)],
+                'left': [pygame.transform.scale(i, (27,40)) for i in self.get_images(96)],
+                'up': [pygame.transform.scale(i, (27,40)) for i in self.get_images(144)],
         }
+        else:
+            self.images = {
+                'down': self.get_images(0),
+                'right': self.get_images(32),
+                'left': self.get_images(64),
+                'up': self.get_images(96),
+            }
+            
         return name
 
     def change_animation(self, name):
@@ -56,7 +74,6 @@ class AnimateSprite(pygame.sprite.Sprite):
 
     def get_images(self, y):
         images = []
-
         for i in range(0, 3):
             x = i*32
             image = self.get_image(x, y)
@@ -65,19 +82,30 @@ class AnimateSprite(pygame.sprite.Sprite):
     
     def get_multiple(self, x, y):
         images = []
-
-        for j in range(0, 3):
-            y = y + 32*j
-            for i in range(0, 3):
-                x = i*32
-                image = self.get_image(x, y)
-                images.append(image)
+        if self.name != 'amelia':
+            for j in range(0, 3):
+                y = y + 32*j
+                for i in range(0, 3):
+                    x = i*32
+                    image = self.get_image(x, y)
+                    images.append(image)
+        else:
+            for j in range(0, 3):
+                y = y + 32*j
+                for i in range(0, 3):
+                    x = i*48
+                    image = self.get_image(x, y)
+                    images.append(image)
         return images
 
 
     def get_image(self, x, y):
-        image = pygame.Surface([32,32])
-        image.blit(self.sprite_sheet, (0, 0), (x, y, 32, 32))
+        if self.name == 'amelia' or self.name == 'boss':
+            image = pygame.Surface([32,48])
+            image.blit(self.sprite_sheet, (0, 0), (x, y, 32, 48))
+        else:
+            image = pygame.Surface([32,32])
+            image.blit(self.sprite_sheet, (0, 0), (x, y, 32, 32))
         return image
     
 
