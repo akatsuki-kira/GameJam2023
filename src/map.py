@@ -57,17 +57,30 @@ class MapManager:
                             Portal(from_world="CouloirA22",target_world="dehors", origin_point="A22_Out_G", target_point="Out_A22_G"),
                             Portal(from_world="CouloirA22",target_world="dehors", origin_point="A22_Out_D", target_point="Out_A22_D")
                           ],
-                          npcs= [NPC(name="robot", nb_points=8, dialog=["J'aime les traiiiiins"])])
+                          npcs= [
+                              NPC(name="perforatrice", nb_points=8, dialog=["J'aime les traiiiiins"]),
+                              NPC(name="fantomaths", nb_points=4, dialog=["Houuuuuuuu....", "Les maths m'ont tué..", "Tu vas tater de mon plasma....", "Houuuuuuuu...."])
+                              ])
         self.register_map('Darwin', portals=[
                             Portal(from_world="Darwin", target_world="CouloirA22", origin_point="Porte_G_Darwin_Out", target_point="A22_Darwin_G_Out"),
                             Portal(from_world="Darwin", target_world="CouloirA22", origin_point="Porte_D_Darwin_Out", target_point="A22_Darwin_D_Out")
                         ], npcs=
-                               [NPC(name="boss", nb_points=1, dialog=["Tu n'es pas encore prêt..."])
+                                # Pour le boss on fait une liste de liste
+                               [NPC(name="boss", nb_points=1, dialog=[["Tu n'es pas encore prêt..."], ["Tu as battue un enemie lol"]])
                                 ])
         self.register_map('dehors', portals=[
                             Portal(from_world="dehors", target_world="CouloirA22", origin_point="In_A22_G", target_point="A22_In_G"),
-                            Portal(from_world="dehors", target_world="CouloirA22", origin_point="In_A22_D", target_point="A22_In_D")
-                        ])
+                            Portal(from_world="dehors", target_world="CouloirA22", origin_point="In_A22_D", target_point="A22_In_D"),
+                            Portal(from_world="dehors", target_world="Cremis", origin_point="entree_cremis", target_point="spawn_cremis")
+                        ],          npcs=[
+                            NPC(name="cerftete", nb_points=8, dialog=["Brrr sort de mon chemin !.", "Je ne changerais pas d'avis, j'ai la tête dure !!"]),
+                            NPC(name="chitrouille", nb_points=1, dialog=["VIENS ICI QUE JE T'ATTRAPE !!!!", "...", "J'aimerais pouvoir voler comme un oiseau..", "MEURT !!!!"]),
+                            NPC(name="hector", nb_points=4, dialog=["...", "*Hector roule jusque dans le combat*."])
+                            ])
+        self.register_map('Cremis', portals=[
+                                            Portal(from_world="Cremis", target_world="dehors", origin_point="sortie_cremis", target_point="spawn_dehors")
+                                             ],
+                                    npcs=[NPC(name="robarbre", nb_points=4, dialog=["VZZZZZZ, Bip BOP !!", "01000111 01100001 01111001 00100000 01110011 01100101 01111000 00001101 00001010 :DD"])])
                           
 
 
@@ -79,15 +92,26 @@ class MapManager:
             if sprite.feet.colliderect(self.player.rect) and type(sprite) is NPC: 
                 self.player.allow_moove(False)
 
-                ### Ajout des fonctions de jeu de Noémie
-                dialog_box.execute(sprite.dialog, sprite.name, func = 1)
+                if sprite.name == "boss":
+                    dialog_box.execute(sprite.dialog[self.player.exp], sprite.name, func = 1)
+                else:
+                    dialog_box.execute(sprite.dialog, sprite.name, func = 1)
                 if dialog_box.get_text_index() == -1:
                     self.player.allow_moove(True)
+                    ### Ajout des fonctions de jeu de Noémie
 
                     #On bully l'énemie 
-                    self.maps[self.current_map].npcs[0].nb_points= 0
-                    self.maps[self.current_map].npcs[0].dialog = ['....']
-                    self.maps[self.current_map].npcs[0].name = f"{sprite.name}."
+                    if sprite.name == "boss":
+                        if self.player.exp > 5:
+                            print("DU-DU-DUEEEEL")
+                        
+                    else:
+                        self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].name = f"{sprite.name}."
+                        self.player.exp += self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].state
+                        if self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].state > 0:
+                            self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].nb_points= 0
+                            self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].dialog = ['....']
+                            self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].state = 0
                     
                     
         return True
@@ -112,7 +136,7 @@ class MapManager:
         tmx_data = pytmx.util_pygame.load_pygame(f"map/{name}.tmx") # Vas chercher le fichier en fonction du nom de la carte (name)
         map_data = pyscroll.data.TiledMapData(tmx_data)
         map_layer = pyscroll.orthographic.BufferedRenderer(map_data, self.screen.get_size())
-        map_layer.zoom = 1.8  # Définie le zoom de la carte
+        map_layer.zoom = 1.55  # Définie le zoom de la carte
 
         # Définir une liste qui vas stocker les rectangles de collisions
         walls = []

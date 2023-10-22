@@ -83,6 +83,7 @@ class Player(Entity):
 
     def __init__(self, name = 'amelia'):
         super().__init__(name, 0, 0)
+        self.exp = 0
 
     def change_name(self, name):
         super().change_name(name)
@@ -110,6 +111,7 @@ class NPC(Entity):
         self.speed = 1  # Vitesse du NPC, possibilité de le passer en paramètre pour faire une vitesse diferente en fonction des NPC, attention dans la fonction collision, dans map, la vitesse est remise à 1 après collision
         self.current_point = 0
         self.orientation = 'down'
+        self.state = 1
 
 
     def teleport_spawn(self):

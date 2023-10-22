@@ -13,7 +13,6 @@ class AnimateSprite(pygame.sprite.Sprite):
                 'right': self.get_images(48),
                 'left': self.get_images(96),
                 'up': self.get_images(144),
-            
         }
         else:
             self.images = {

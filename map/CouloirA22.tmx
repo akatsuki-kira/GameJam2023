@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="70" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="89">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="70" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="93">
  <tileset firstgid="1" name="Room_Builder_32x32" tilewidth="32" tileheight="32" tilecount="391" columns="17">
   <image source="style_sheet/Room_Builder_32x32.png" width="544" height="736"/>
  </tileset>
@@ -451,42 +451,42 @@
     <property name="col" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="43" name="robot_path1" x="159.5" y="928" width="33" height="32">
+  <object id="43" name="perforatrice_path1" x="159.5" y="928" width="33" height="32">
    <properties>
     <property name="col" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="44" name="robot_path2" x="640" y="927.667" width="31.5" height="31.5">
+  <object id="44" name="perforatrice_path2" x="640" y="927.667" width="31.5" height="31.5">
    <properties>
     <property name="col" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="45" name="robot_path3" x="640" y="1024.25" width="32.25" height="32">
+  <object id="45" name="perforatrice_path3" x="640" y="1024.25" width="32.25" height="32">
    <properties>
     <property name="col" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="46" name="robot_path4" x="863.5" y="1023.5" width="31.5" height="33">
+  <object id="46" name="perforatrice_path4" x="863.5" y="1023.5" width="31.5" height="33">
    <properties>
     <property name="col" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="47" name="robot_path5" x="863.5" y="895" width="32.5" height="32.5">
+  <object id="47" name="perforatrice_path5" x="863.5" y="895" width="32.5" height="32.5">
    <properties>
     <property name="col" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="48" name="robot_path6" x="416" y="892.5" width="30.5" height="32.5">
+  <object id="48" name="perforatrice_path6" x="416" y="892.5" width="30.5" height="32.5">
    <properties>
     <property name="col" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="49" name="robot_path7" x="414.5" y="991.5" width="34.5" height="32">
+  <object id="49" name="perforatrice_path7" x="414.5" y="991.5" width="34.5" height="32">
    <properties>
     <property name="col" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="50" name="robot_path8" x="159.5" y="992" width="33.5" height="33.5">
+  <object id="50" name="perforatrice_path8" x="159.5" y="992" width="33.5" height="33.5">
    <properties>
     <property name="col" type="bool" value="false"/>
    </properties>
@@ -646,6 +646,26 @@
    </properties>
   </object>
   <object id="88" name="A22_Out_D" x="1625.75" y="1137.25" width="105.5" height="46.5">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="89" name="fantomaths_path1" x="1247.5" y="960" width="32.5" height="32">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="90" name="fantomaths_path2" x="1535.5" y="960" width="33" height="32">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="91" name="fantomaths_path3" x="1535.33" y="1024" width="34" height="32.6667">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="92" name="fantomaths_path4" x="1248" y="1023.33" width="31.3333" height="31.3333">
    <properties>
     <property name="col" type="bool" value="false"/>
    </properties>

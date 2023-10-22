@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="70" height="35" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="67">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="70" height="35" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="85">
  <tileset firstgid="1" source="style_sheet/Room_Builder_32x32.tsx"/>
  <tileset firstgid="392" source="style_sheet/Interiors_free.tsx"/>
  <tileset firstgid="1816" source="style_sheet/Serene_Village_32x32.tsx"/>
@@ -44,10 +44,10 @@
  </layer>
  <layer id="2" name="Sursol" width="70" height="35">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,9,9,9,9,0,9,9,9,9,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,9,9,9,9,0,9,9,9,9,9,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -535,12 +535,12 @@
    </properties>
    <point/>
   </object>
-  <object id="63" name="In_A22_G" x="216.182" y="146" width="79.75" height="38.25">
+  <object id="63" name="In_A22_G" x="216" y="146" width="79.75" height="38.25">
    <properties>
     <property name="col" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="64" name="In_A22_D" x="861.023" y="144.182" width="71.5" height="36.0909">
+  <object id="64" name="In_A22_D" x="861.568" y="144.545" width="71.5" height="36.0909">
    <properties>
     <property name="col" type="bool" value="false"/>
    </properties>
@@ -553,6 +553,82 @@
   <object id="66" x="1275.33" y="446.667" width="36.6667" height="28.6667">
    <properties>
     <property name="col" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="67" name="entree_cremis" x="1978.67" y="70" width="69.6667" height="54">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="68" name="spawn_dehors" x="2016" y="168.667">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="70" name="cerftete_path1" x="734.5" y="543.5" width="34.5" height="33">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="71" name="cerftete_path2" x="735" y="735" width="33.5" height="33">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="72" name="cerftete_path3" x="959.5" y="735" width="33.5" height="32.5">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="73" name="cerftete_path4" x="960" y="895" width="32" height="33.5">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="74" name="cerftete_path5" x="1215" y="896" width="33" height="31.5">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="75" name="cerftete_path6" x="1216" y="608.667" width="32" height="30.6667">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="76" name="cerftete_path7" x="895.333" y="607.333" width="33.3333" height="32.6667">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="77" name="cerftete_path8" x="896" y="543.333" width="32" height="32">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="78" name="chitrouille_path1" x="1631.5" y="94.5" width="32.5" height="33">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="79" name="hector_path1" x="30" y="447.5" width="35" height="34">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="80" name="hector_path2" x="31" y="575" width="36.5" height="34">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="81" name="hector_path3" x="255" y="576" width="32" height="31.5">
+   <properties>
+    <property name="col" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="82" name="hector_path4" x="255" y="448.5" width="34" height="32.5">
+   <properties>
+    <property name="col" type="bool" value="false"/>
    </properties>
   </object>
  </objectgroup>
