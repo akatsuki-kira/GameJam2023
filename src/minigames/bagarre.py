@@ -57,7 +57,7 @@ def main(screen):
                 exit()
         if firsttime:
             touche = random.choice(touches)
-            text = font.render(f"Appuie sur la touche {touche[0]}!!",True,(255,255,255),(0,0,0))
+            text = font.render(f"Appuie sur la touche {touche[0]} !!",True,(255,255,255),(0,0,0))
             firsttime = False
 
         event = pygame.event.wait()

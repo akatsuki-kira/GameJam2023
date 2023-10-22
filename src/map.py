@@ -116,13 +116,13 @@ class MapManager:
                     
                     #On bully l'énemie 
                     if sprite.name == "boss":
-                        if self.player.exp > 5:
+                        if self.player.exp > -1:
                             enVie = FinalCombatApp(screen=self.screen).on_execute()
                         
                     else:
                         self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].name = f"{sprite.name}."
                         self.player.exp += self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].state
-                        if exp > len(sprite.dialogue) : exp = len(sprite.dialogue)-1
+                        if self.player.exp > len(sprite.dialog) : self.player.exp = len(sprite.dialog)-1
                         if self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].state > 0:
                             self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].nb_points= 0
                             self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].dialog = ['....']
