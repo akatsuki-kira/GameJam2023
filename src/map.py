@@ -57,15 +57,17 @@ class MapManager:
                             Portal(from_world="CouloirA22",target_world="dehors", origin_point="A22_Out_G", target_point="Out_A22_G"),
                             Portal(from_world="CouloirA22",target_world="dehors", origin_point="A22_Out_D", target_point="Out_A22_D")
                           ],
-                          npcs= [NPC(name="robot", nb_points=8, dialog=["J'aime les traiiiiins"], atk=0)])
+                          npcs= [NPC(name="robot", nb_points=8, dialog=["J'aime les traiiiiins"])])
         self.register_map('Darwin', portals=[
                             Portal(from_world="Darwin", target_world="CouloirA22", origin_point="Porte_G_Darwin_Out", target_point="A22_Darwin_G_Out"),
                             Portal(from_world="Darwin", target_world="CouloirA22", origin_point="Porte_D_Darwin_Out", target_point="A22_Darwin_D_Out")
-                        ])
+                        ], npcs=
+                               [NPC(name="boss", nb_points=1, dialog=["Tu n'es pas encore prêt..."])
+                                ])
         self.register_map('dehors', portals=[
                             Portal(from_world="dehors", target_world="CouloirA22", origin_point="In_A22_G", target_point="A22_In_G"),
                             Portal(from_world="dehors", target_world="CouloirA22", origin_point="In_A22_D", target_point="A22_In_D")
-        ])
+                        ])
                           
 
 
@@ -83,7 +85,6 @@ class MapManager:
                     self.player.allow_moove(True)
 
                     #On bully l'énemie 
-                    #del self.maps[self.current_map].npcs[0]
                     self.maps[self.current_map].npcs[0].nb_points= 0
                     self.maps[self.current_map].npcs[0].dialog = ['....']
                     self.maps[self.current_map].npcs[0].name = f"{sprite.name}."
@@ -106,7 +107,7 @@ class MapManager:
                         self.player.allow_moove(True)
 
 
-    def register_map(self, name, portals=[], npcs=[], sprite_name = 'OMORI'):
+    def register_map(self, name, portals=[], npcs=[], sprite_name = 'amelia'):
         # Charger la carte en format TMX
         tmx_data = pytmx.util_pygame.load_pygame(f"map/{name}.tmx") # Vas chercher le fichier en fonction du nom de la carte (name)
         map_data = pyscroll.data.TiledMapData(tmx_data)

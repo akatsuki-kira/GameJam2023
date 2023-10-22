@@ -535,12 +535,12 @@
    </properties>
    <point/>
   </object>
-  <object id="63" name="In_A22_G" x="219" y="147" width="71.5" height="31">
+  <object id="63" name="In_A22_G" x="216.182" y="146" width="79.75" height="38.25">
    <properties>
     <property name="col" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="64" name="In_A22_D" x="859.75" y="140" width="71.5" height="31">
+  <object id="64" name="In_A22_D" x="861.023" y="144.182" width="71.5" height="36.0909">
    <properties>
     <property name="col" type="bool" value="false"/>
    </properties>

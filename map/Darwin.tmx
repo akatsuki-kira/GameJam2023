@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="35" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="45">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="35" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="46">
  <tileset firstgid="1" source="style_sheet/Interiors_free.tsx"/>
  <tileset firstgid="1425" source="style_sheet/Room_Builder_32x32.tsx"/>
  <tileset firstgid="1816" source="style_sheet/DefenceDeFuir.tsx"/>
@@ -448,6 +448,11 @@
   <object id="44" x="419" y="230.5" width="25" height="20">
    <properties>
     <property name="col" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="45" name="boss_path1" x="575.5" y="223.5" width="32.5" height="32.5">
+   <properties>
+    <property name="col" type="bool" value="false"/>
    </properties>
   </object>
  </objectgroup>

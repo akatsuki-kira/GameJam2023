@@ -88,7 +88,7 @@ class Start_Screen:
     def __init__(self):
         # Crée la fenètre du jeu
         self.screen = pygame.display.set_mode((1200,720))  
-        pygame.display.set_caption("Omori 2 - Le retour du jedi.")  # Renome la fenètre "Omori 2 - Le retour du jedi"
+        pygame.display.set_caption("amelia 2 - Le retour du jedi.")  # Renome la fenètre "amelia 2 - Le retour du jedi"
         self.texts_debut = [
             "Depuis quelques années, on observe une montée de cas de phobie des mathématiques chez les jeunes étudiants bordelais..",
             "Les scientifiques tentèrent d'expliquer ça... En vain. Pourquoi avaient-ils autant peur ??",
