@@ -2,8 +2,8 @@ import pygame, random
 from pygame.locals import *
 
 personalities = [
-    "pong",
-    #"quiz",
+    #"pong",
+    "quiz",
     #"battle"
 ]
 

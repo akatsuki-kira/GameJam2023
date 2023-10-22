@@ -18,15 +18,11 @@ clock = pygame.time.Clock()
 FPS = 30
 
 qst = [
-     ("What is the sine of pi/2?","1"),
-     ("What is the name of the blood cell \nresponsible for its red colour?","Hemoglobin"),
-     ("What is the name of the hardest rock?","Diamond"),
-     ("What is the 12th periodic element?","Magnesium"),
-     ("What is the derivative of 3x^2?","6x"),
-     ("Who created a famous algorithm to \ncalculate the GCD of two numbers?","Euclid"),
-     ("Who discovered the identity e^{i pi}+1=0?","Euler"),
-     ("What do you obtain when you mix H2O and NaCl ?","Salt water"),
-     ("What will be your state if \nI throw a 100kg rock at your head?","dead")
+    ("Quel est le sinus de pi/2 ?","1"),
+    ("D'où vient la couleur rouge du sang?","Hémoglobine"),
+    ("Si je fais tomber un corps du 10e étage, sa trajectoire est...",("Rectiligne","Linéaire")),
+    ("La loi des noeuds stipule que la somme des intensités allant dans un noeud est...",("Nulle",0)),
+    ("Comment écrit-on la molécule de l'éthanol?","C2H6O")
 ]
 
 class Quiz:
@@ -41,7 +37,7 @@ class Quiz:
         self.root.geometry('500x500')
         self.label_qst = Label(self.root, text=self._question, padx=20, pady=20)
         self.txt_input = Entry(self.root)
-        self.button1 = Button(self.root, text = "Confirm answer",
+        self.button1 = Button(self.root, text = "Confirmer réponse",
                         command = self.confirm, padx=20, pady=20)
         
         self.label_qst.pack()
@@ -51,58 +47,38 @@ class Quiz:
         print(self._question, self._answer)
         self.root.mainloop()
 
+        
 
     def confirm(self):
-        self._data = self.txt_input.get().lower().strip()
-        if self._data!=self._answer.lower().strip():
-            self._badanswer=True
-            self.label_qst['text']="WRONG!"
-        else:
-            self._goodanswer=True
-            self.label_qst['text']="That's right!"
         if self._done:
-            time.sleep(1)
             self.root.destroy()
         else:
+            self._data = self.txt_input.get().lower().strip()
+            if isinstance(self._answer,tuple):
+                if self._data not in map(lambda x:x.lower().strip(),self._answer):
+                    self._badanswer=True
+                    self.label_qst['text']="WRONG!"
+                else:
+                    self._goodanswer=True
+                    self.label_qst['text']="That's right!"
+            else:
+                if self._data != self._answer.lower().strip():
+                    self._badanswer=True
+                    self.label_qst['text']="WRONG!"
+                else:
+                    self._goodanswer=True
+                    self.label_qst['text']="That's right!"
             self._done=True
             self.button1['text']="Leave"
-
+        
 
 # Game Manager
-def main():
-    running = True
+def main(x):
+    if x>=2:
+        return (False, True)
     q = Quiz()
     q.handler()
-
-    while running:
-        screen.fill(BLACK)
-        COUNT=0
-        if q._goodanswer:	
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
-            text = font20.render('You won!',GREEN,BLACK)
-            textRect = text.get_rect()
-            textRect.center = (WIDTH//2, HEIGHT//2)
-            screen.fill(GREEN)
-            screen.blit(text, textRect)
-
-        elif q._badanswer:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
-            text = font20.render('You lost!',RED,BLACK)
-            textRect = text.get_rect()
-            textRect.center = (WIDTH//2, HEIGHT//2)
-            screen.fill(RED)
-            screen.blit(text, textRect)
-			
-
-        pygame.display.update()
-        COUNT +=1
-        # Adjusting the frame rate
-        clock.tick(FPS)
+    print(q._goodanswer, q._badanswer)
+    return (q._goodanswer, q._badanswer)
 	
-if __name__=="__main__":
-	main()
-	pygame.quit
+

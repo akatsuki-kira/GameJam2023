@@ -4,7 +4,7 @@ from dialogs import DialogBox
 from pygame.locals import *
 import sys
 import random
-from minigames import pong,quiz,pongv2
+from minigames import quiz,pongv2,bagarre
 # from tkinter import filedialog
 # from tkinter import *
 
@@ -15,7 +15,9 @@ WIDTH, HEIGHT = 800,800
 class CombatApp:
     def __init__(self,ennemi):
         self.index = 0
+        self._autodialog = 10
         self._running = True
+        self._count_quiz = 0
         self._nbminijeu = 0
         self._win_minijeu = False
         self._lose_minijeu =False
@@ -24,15 +26,15 @@ class CombatApp:
         self.size = (WIDTH,HEIGHT)
         self._name = ennemi._name
         self._minijeu_encours = False
-        self.choix_minijeu = random.choice(["pong",])#"quiz","bagarre"
+        self.choix_minijeu = random.choice(["bagarre"])
         if self.choix_minijeu == "pong":
-            self.choix_minijeu = "jouer au pong contre toi"
+            self.choix_minijeu = "jouer au pong contre toi!!"
             self._nbminijeu = 1
         elif self.choix_minijeu == "quiz":
-            self.choix_minijeu = "voir si tu réussiras son quiz"
+            self.choix_minijeu = "voir si tu réussiras son quiz!!"
             self._nbminijeu = 2
         elif self.choix_minijeu == "bagarre":
-            self.choix_minijeu = "te casser la gueule ?"
+            self.choix_minijeu = "te casser la gueule ?! \nExplication: Appuie sur la bone touche en une seconde pour faire des dégâts à l'ennemi. Sinon, tu perds de la vie!!"
             self._nbminijeu = 3
         
  
@@ -47,7 +49,7 @@ class CombatApp:
         self._color1 = pygame.Color(255, 0, 0)
         self.texts_debut = [
             f"{self._name.capitalize()} veut se battre!!",
-            f"Il souhaite... {self.choix_minijeu}!!"
+            f"Il souhaite... {self.choix_minijeu}"
         ]
         self.texts_win = [
             random.choice([
@@ -79,23 +81,43 @@ class CombatApp:
     def on_event(self, event):
         if event.type == pygame.QUIT:
             self._running = False
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE and not self._minijeu_encours:
+
+        elif not self._minijeu_encours:
+
+            if  event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE :
+
                 if self.index == 2:
                     self._intro = False
                     self._minijeu_encours = True
                 elif self.index == 5:
                     self._running = False
-                self.index += 1
-                print(self.index)
+                
+            
                 if self._intro:
                     self.dialog_box.execute(self.texts_debut, f"{self._name.capitalize()}")
                 elif self._win_minijeu:
                     self.db_win.execute(self.texts_win,f"{self._name.capitalize()}")
                 elif self._lose_minijeu:
                     self.db_lose.execute(self.texts_lose,f"{self._name.capitalize()}")
+                self.index += 1
 
-        print(self.index)
+            elif  self.index >=2 and self.index <5 and self._autodialog<1:
+
+                self._autodialog+=1
+                if self.index == 2:
+                    self._intro = False
+                    self._minijeu_encours = True
+                elif self.index == 5:
+                    self._running = False
+                
+            
+                if self._intro:
+                    self.dialog_box.execute(self.texts_debut, f"{self._name.capitalize()}")
+                elif self._win_minijeu:
+                    self.db_win.execute(self.texts_win,f"{self._name.capitalize()}")
+                elif self._lose_minijeu:
+                    self.db_lose.execute(self.texts_lose,f"{self._name.capitalize()}")
+                self.index += 1
 
     def on_loop(self):
         pass
@@ -117,31 +139,68 @@ class CombatApp:
             for event in pygame.event.get():
                 self.on_event(event)
     
+    # --- Intro ---
+
             if self._intro:
                 self._display_surf.fill((50,50,50))
                 self.dialog_box.render(self._display_surf)
                 rb._image = pygame.image.load(f"images/{self._name}/{sprites_[COUNT%58]}")
                 rb.render(self._display_surf)
+
+    # --- Minijeux ---
+
             elif self._minijeu_encours: 
+
+                # Pong -----------
+
                 if self._nbminijeu==1:
                     score1,score2 = pongv2.main(self._display_surf)
                     if score1>=2 or score2>=2:
-                        self._minijeu_encours = False
+                        self._win_minijeu = score1>=2
+                        self._lose_minijeu = score2 >=2
+
                         self._fin_battle = True
+                        self._minijeu_encours = False
                         self.index = 3
-                        if score1 > score2:
-                            self._win_minijeu = True
-                        else:
-                            self._lose_minijeu = True
+                        self._autodialog=0
+
+                            
+
+                # Quiz ----------
+
                 elif self._nbminijeu==2:
-                    quiz.main()
+                    self._count_quiz += 1
+                    self._win_minijeu, self._lose_minijeu = quiz.main(self._count_quiz)
+                    if self._win_minijeu==True or self._lose_minijeu==True:
+
+                        self._fin_battle = True
+                        self._minijeu_encours = False
+                        self.index = 3
+                        self._autodialog=0
+                        
+
+                # Bagarre ----------
+
                 else:
-                    self._running=False
-            elif self._fin_battle:
+                    a,b = bagarre.main(self._display_surf)
+                    self._win_minijeu = a>0
+                    self._lose_minijeu = b>0
+                    if (self._win_minijeu and not self._lose_minijeu) or (self._lose_minijeu and not self._win_minijeu):
+
+                        self._fin_battle = True
+                        self._minijeu_encours = False       
+                        self.index = 3             
+                        self._autodialog=0
+            
+    # --- Fin minijeu ---
+
+            elif self._fin_battle: 
+
                 self._display_surf.fill((50,50,50))
                 if self._win_minijeu:
                     self.db_win.render(self._display_surf)
                 elif self._lose_minijeu:
+
                     self.db_lose.render(self._display_surf)
                 rb._image = pygame.image.load(f"images/{self._name}/{sprites_[COUNT%58]}")
                 rb.render(self._display_surf)                
