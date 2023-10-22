@@ -74,7 +74,9 @@ class MapManager:
                                      ["Je sens que tu progresse, continue.."],
                                      ["Le pouvoir nait en toi, tu es bientôt prêt.."],
                                      ["Je sens ton pouvoir envahir la pièce, poursuit ton entrainement.."],
-                                     ["Il est l'heure, affronte ma colère !!!!!"]])
+                                     ["Il est l'heure, affronte ma colère !!!!!"],
+                                     ["L'heure du combat à sonné !!"],
+                                     ["Goute à mes maths !!!"]])
                                 ])
         self.register_map('dehors', portals=[
                             Portal(from_world="dehors", target_world="CouloirA22", origin_point="In_A22_G", target_point="A22_In_G"),
@@ -120,6 +122,7 @@ class MapManager:
                     else:
                         self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].name = f"{sprite.name}."
                         self.player.exp += self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].state
+                        if exp > len(sprite.dialogue) : exp = len(sprite.dialogue)-1
                         if self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].state > 0:
                             self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].nb_points= 0
                             self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].dialog = ['....']

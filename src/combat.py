@@ -24,7 +24,7 @@ class CombatApp:
         elif ennemi=="hector":
             self._ennemi = Hector()
         elif ennemi=="perforatrice":
-            self._ennemi = Perforatrice
+            self._ennemi = Perforatrice()
         elif ennemi=="robarbre":
             self._ennemi = Robarbre()
         else:
@@ -56,7 +56,7 @@ class CombatApp:
  
     def on_init(self):
         pygame.init()
-        self.font = pygame.font.SysFont('Arial', 30)
+        self.font = pygame.font.Font('dialogs/dialog2.otf', 23)
 
         pygame.display.set_caption("Fuyez les maths approfondies!!")
         self._running = True 
