@@ -107,10 +107,11 @@ class MapManager:
                     dialog_box.execute(sprite.dialog, sprite.name, func = 1)
                 if dialog_box.get_text_index() == -1:
                     self.player.allow_moove(True)
-                    ### Ajout des fonctions de jeu de Noémie
+                    ### Ajout des fonctions de jeu de Noémie 
 
                     if sprite.state > 0 and sprite.name != "boss":
                         enVie = CombatApp(sprite.name, screen=self.screen).on_execute()
+                    
                     #On bully l'énemie 
                     if sprite.name == "boss":
                         if self.player.exp > 5:

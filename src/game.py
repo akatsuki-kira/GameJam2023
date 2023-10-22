@@ -69,10 +69,11 @@ class Game:
                     running = False
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
-                        if self.map_manager.check_npc_collisions(self.dialog_box) == False:
+                        npc = self.map_manager.check_npc_collisions(self.dialog_box)
+                        if npc == False:
                             running = False
                             End_Screen().end_game("dead")
-                        elif self.map_manager.check_npc_collisions(self.dialog_box) == "boss":   
+                        elif npc == "boss":   
                             End_Screen().end_game("gagne")
                             running = False                           
                         self.map_manager.check_interaction_collisions(self.dialog_box)
