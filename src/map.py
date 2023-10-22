@@ -73,6 +73,14 @@ class MapManager:
                 dialog_box.execute(sprite.dialog, sprite.name, func = 1)
                 if dialog_box.get_text_index() == -1:
                     self.player.allow_moove(True)
+
+                    #On bully l'énemie 
+                    #del self.maps[self.current_map].npcs[0]
+                    self.maps[self.current_map].npcs[0].nb_points= 0
+                    self.maps[self.current_map].npcs[0].dialog = ['....']
+                    self.maps[self.current_map].npcs[0].name = f"{sprite.name}."
+                    
+                    
         return True
     
     def check_interaction_collisions(self, dialog_box):
@@ -112,7 +120,7 @@ class MapManager:
                 walls.append(pygame.Rect(obj.x, obj.y, obj.width, obj.height))  # Définis comme un mur les objets an fonct° de leurs positions et leurs tailles
 
         # Dessiner le groupe de calque
-        group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=4)
+        group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)
         group.add(self.player)
 
         # Récuperer tout les NPC pour les ajouter au groupe
@@ -152,7 +160,6 @@ class MapManager:
                     self.current_map = portal.target_world
                     self.teleport_player(copy_portal.target_point)
                     self.player.change_name(self.get_map().player_sprite)
-                    pygame.mixer.stop() 
         #collision
         for sprite in self.get_group().sprites(): # Pour toute les entité:
 

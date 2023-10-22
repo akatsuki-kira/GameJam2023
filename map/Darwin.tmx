@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="35" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="42">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="35" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="45">
  <tileset firstgid="1" source="style_sheet/Interiors_free.tsx"/>
  <tileset firstgid="1425" source="style_sheet/Room_Builder_32x32.tsx"/>
+ <tileset firstgid="1816" source="style_sheet/DefenceDeFuir.tsx"/>
  <layer id="3" name="Sol" width="30" height="35">
   <data encoding="csv">
 1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,
@@ -123,12 +124,12 @@
   <data encoding="csv">
 0,0,0,0,0,1453,0,0,0,0,0,0,0,0,225,226,0,0,0,0,0,0,0,0,1455,0,0,0,0,0,
 0,0,0,0,0,1432,0,0,0,0,0,0,0,0,241,242,0,0,0,0,0,0,0,0,1431,0,0,0,0,0,
-0,0,0,0,0,1432,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1431,0,0,0,0,0,
+0,0,0,0,0,1432,0,0,0,0,0,1816,1817,1818,1819,1820,1821,1822,1823,0,0,0,0,0,1431,0,0,0,0,0,
 0,0,0,0,0,1432,0,0,0,0,622,623,622,623,622,623,622,623,622,623,0,0,0,0,1431,0,0,0,0,0,
 1452,0,0,0,0,1447,453,0,0,0,638,639,638,639,638,639,638,639,638,639,0,0,0,0,1448,0,0,0,0,1451,
 1472,0,394,395,0,0,469,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,344,0,0,394,395,0,1470,
-1472,0,410,411,0,0,0,0,0,0,0,561,0,0,0,0,0,0,0,0,0,0,0,360,0,0,410,411,0,1470,
-1472,0,0,0,0,0,0,0,81,82,82,577,82,82,82,82,83,0,0,0,0,0,0,0,0,0,0,0,0,1470,
+1472,0,410,411,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,360,0,0,410,411,0,1470,
+1472,0,0,0,0,0,0,0,0,0,0,341,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1470,
 1472,0,0,0,0,0,0,0,129,130,130,593,130,130,130,130,131,0,0,0,0,0,0,0,0,0,0,0,0,1470,
 1472,262,263,653,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,262,263,262,263,1470,
 1472,278,279,669,0,0,0,0,0,0,536871445,0,0,0,0,0,0,0,0,0,0,0,0,0,0,278,279,278,279,1470,
@@ -167,7 +168,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,82,0,0,590,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,81,82,82,82,82,82,82,82,83,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,130,0,0,606,0,0,0,0,0,0,0,0,0,0,657,658,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -197,83 +198,122 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <layer id="7" name="Top" width="30" height="35">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,590,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
  <objectgroup id="6" name="Obj">
-  <object id="1" x="321" y="319" width="305" height="33">
+  <object id="1" x="321" y="308" width="305" height="44">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="2" x="257" y="382" width="429" height="32">
+  <object id="2" x="252" y="372.5" width="434" height="41.5">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="3" x="255" y="447" width="435" height="32">
+  <object id="3" x="250" y="436.5" width="440" height="42.5">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="4" x="254.5" y="510" width="435" height="32">
+  <object id="4" x="250.5" y="501.5" width="439" height="40.5">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="5" x="256.5" y="578" width="435" height="32">
+  <object id="5" x="251.5" y="566.5" width="440" height="43.5">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="6" x="258.5" y="638" width="435" height="32">
+  <object id="6" x="253" y="629.5" width="440.5" height="40.5">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="7" x="257.5" y="704" width="435" height="32">
+  <object id="7" x="253" y="693" width="439.5" height="43">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="8" x="256.5" y="767" width="435" height="32">
+  <object id="8" x="252.5" y="759" width="439" height="40">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="9" x="259.5" y="833" width="435" height="32">
+  <object id="9" x="252.5" y="825" width="440" height="39">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="10" x="13.5" y="417" width="163" height="32">
+  <object id="10" x="13.5" y="405" width="168.5" height="44">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="11" x="14.5" y="479" width="163" height="32">
+  <object id="11" x="14.5" y="467" width="167" height="44">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="12" x="14.5" y="542" width="163" height="32">
+  <object id="12" x="14.5" y="534.5" width="165.5" height="39.5">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="13" x="11.5" y="609" width="163" height="32">
+  <object id="13" x="11.5" y="598.5" width="171.5" height="42.5">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="14" x="14.5" y="672" width="163" height="32">
+  <object id="14" x="14.5" y="660.5" width="168" height="43.5">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="15" x="16.5" y="735" width="163" height="32">
+  <object id="15" x="14.5" y="725.5" width="171" height="41.5">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="16" x="13.5" y="801" width="163" height="32">
+  <object id="16" x="13.5" y="789" width="169.5" height="44">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
@@ -283,32 +323,32 @@
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="18" x="803.5" y="480" width="142" height="32">
+  <object id="18" x="796.5" y="467" width="149" height="45">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="19" x="802" y="544" width="142" height="32">
+  <object id="19" x="796" y="534" width="148" height="42">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="20" x="804" y="605" width="142" height="32">
+  <object id="20" x="797" y="593.5" width="149" height="43.5">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="21" x="800" y="671" width="142" height="32">
+  <object id="21" x="796.5" y="660" width="145.5" height="43">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="22" x="803" y="739" width="142" height="32">
+  <object id="22" x="796.5" y="724.5" width="147.5" height="42.5">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="23" x="803" y="803" width="142" height="32">
+  <object id="23" x="797" y="789.5" width="146.5" height="43">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
@@ -318,7 +358,7 @@
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="25" x="265" y="254" width="275" height="32">
+  <object id="25" x="265" y="248" width="275" height="38">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
@@ -338,7 +378,7 @@
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="29" x="803.667" y="414.667" width="142" height="32">
+  <object id="29" x="795.667" y="400.167" width="150" height="46.5">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
@@ -396,6 +436,16 @@
    </properties>
   </object>
   <object id="41" x="326" y="1016.67" width="306.667" height="103.333">
+   <properties>
+    <property name="col" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="42" x="353" y="235.5" width="30.5" height="16.5">
+   <properties>
+    <property name="col" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="44" x="419" y="230.5" width="25" height="20">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>

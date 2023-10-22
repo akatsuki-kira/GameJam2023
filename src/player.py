@@ -44,9 +44,6 @@ class Entity(AnimateSprite):
     def allow_moove(self, yes_no: bool):
         self.can_moove = yes_no
 
-    def suicide(self):
-        return self.change_animation('suicide')
-
     def move_right(self):
         if self.can_moove:
             self.change_animation('right')
@@ -114,6 +111,10 @@ class NPC(Entity):
         self.speed = 1  # Vitesse du NPC, possibilité de le passer en paramètre pour faire une vitesse diferente en fonction des NPC, attention dans la fonction collision, dans map, la vitesse est remise à 1 après collision
         self.current_point = 0
         self.orientation = 'down'
+
+    def __del__(self):
+        print('del.')
+        return
 
     def teleport_spawn(self):
         location = self.points[self.current_point]
