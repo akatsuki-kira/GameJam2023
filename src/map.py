@@ -105,29 +105,26 @@ class MapManager:
 
                 if sprite.name == "boss":
                     dialog_box.execute(sprite.dialog[self.player.exp], sprite.name, func = 1)
+                    if self.player.exp > 5:
+                        if dialog_box.get_text_index() == -1:
+                            enVie = FinalCombatApp(screen=self.screen).on_execute()
                 else:
                     dialog_box.execute(sprite.dialog, sprite.name, func = 1)
                 if dialog_box.get_text_index() == -1:
+                    
                     self.player.allow_moove(True)
                     ### Ajout des fonctions de jeu de Noémie 
 
                     if sprite.state > 0 and sprite.name != "boss":
                         enVie = CombatApp(sprite.name, screen=self.screen).on_execute()
-                    
-                    #On bully l'énemie 
-                    if sprite.name == "boss":
-                        if self.player.exp > -1:
-                            enVie = FinalCombatApp(screen=self.screen).on_execute()
-                        
-                    else:
                         self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].name = f"{sprite.name}."
                         self.player.exp += self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].state
-                        if self.player.exp > len(sprite.dialog) : self.player.exp = len(sprite.dialog)-1
                         if self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].state > 0:
                             self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].nb_points= 0
                             self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].dialog = ['....']
                             self.maps[self.current_map].npcs[self.maps[self.current_map].npcs.index(sprite)].state = 0
-            print(enVie)
+                        
+                    print(self.player.exp)
                     
         return enVie
     
