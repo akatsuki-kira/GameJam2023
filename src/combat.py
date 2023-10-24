@@ -50,7 +50,7 @@ class CombatApp:
             self.choix_minijeu = "voir si tu réussiras son quiz!!"
             self._nbminijeu = 2
         elif self.choix_minijeu == "bagarre":
-            self.choix_minijeu = "te casser la gueule ?! \nExplication: Appuie sur la bone touche en une seconde pour faire des dégâts à l'ennemi. Sinon, tu perds de la vie!!"
+            self.choix_minijeu = "te casser la gueule ?! \nExplication: Appuie sur la bone touche de plus en plus rapidement pour faire des dégâts à l'ennemi. Sinon, tu perds de la vie!!"
             self._nbminijeu = 3
         
  

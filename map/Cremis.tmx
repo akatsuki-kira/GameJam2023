@@ -323,7 +323,7 @@
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="30" x="700.667" y="374" width="35.3333" height="96">
+  <object id="30" x="691.334" y="374" width="44.6666" height="105">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
@@ -383,7 +383,7 @@
     <property name="col" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="46" x="506.667" y="524" width="57.3333" height="85.3333">
+  <object id="46" x="506.667" y="518" width="57.3333" height="91.3333">
    <properties>
     <property name="col" type="bool" value="true"/>
    </properties>
@@ -426,7 +426,7 @@
   </object>
   <object id="66" x="569.5" y="412" width="72" height="37.5">
    <properties>
-    <property name="col" type="bool" value="false"/>
+    <property name="col" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

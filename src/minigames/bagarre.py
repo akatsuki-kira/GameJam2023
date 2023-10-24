@@ -22,7 +22,6 @@ touches=[
     ("O",pygame.K_o),
     ("P",pygame.K_p),
     ("Q",pygame.K_q),
-    ("R",pygame.K_r),
     ("R",pygame.K_s),
     ("T",pygame.K_t),
     ("U",pygame.K_u),
